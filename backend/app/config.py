@@ -1,13 +1,14 @@
 from pydantic_settings import BaseSettings ,SettingsConfigDict
 
-class Settings(BaseSettings):
 
-    modelConfig = SettingsConfigDict(env_file=".env", extra="ignore")
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     app_name: str = "E_PORTFOLIO"
     app_env: str = "development"
+    app_host: str = "0.0.0.0"
     app_port: int = 8000
-    app_debug: bool = True
+    debug: bool = True
 
     postgres_host: str 
     postgres_port: int = 5432
@@ -18,7 +19,7 @@ class Settings(BaseSettings):
     redis_host: str = "localhost"   
     redis_port: int = 6379
 
-    jwt_secret_key: str 
+    jwt_secret: str 
     jwt_algorithm: str = "HS256"
     jwt_access_token_expire_minutes: int = 30
     admin_email: str 
