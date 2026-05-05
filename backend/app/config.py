@@ -1,8 +1,8 @@
-from pydantic import BaseSettings ,settingsConfigDict
+from pydantic_settings import BaseSettings ,SettingsConfigDict
 
 class Settings(BaseSettings):
 
-    modelConfig = settingsConfigDict(env_file=".env", extra="ignore")
+    modelConfig = SettingsConfigDict(env_file=".env", extra="ignore")
 
     app_name: str = "E_PORTFOLIO"
     app_env: str = "development"

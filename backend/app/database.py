@@ -1,25 +1,23 @@
-from contextlib import asynccontextmanager
+import asyncpg
 
-from fastapi import FastAPI
+from app.config import settings
 
-from app.database import close_pool, get_pool
-from app.routers import health
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    await get_pool()
-    yield
-    await close_pool()
+_pool: asyncpg.Pool | None = None
 
 
-app = FastAPI(
-    title="Portfolio API",
-    version="0.1.0",
-    lifespan=lifespan,
-)
+async def get_pool() -> asyncpg.Pool:
+    global _pool
+    if _pool is None:
+        _pool = await asyncpg.create_pool(
+            dsn=settings.database_url,
+            min_size=2,
+            max_size=10,
+        )
+    return _pool
 
-app.include_router(health.router)
 
-
-
+async def close_pool() -> None:
+    global _pool
+    if _pool:
+        await _pool.close()
+        _pool = None
