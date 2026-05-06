@@ -1,15 +1,25 @@
+import traceback
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+import structlog
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 
-from app.database import close_pool
+from app.core.database import close_pool
+from app.core.logging_config import setup_logging
+from app.core.middleware import RequestLoggingMiddleware
 from app.routers import health
+
+logger = structlog.get_logger()
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    setup_logging()
+    logger.info("startup\n", message="API starting up")
     yield
     await close_pool()
+    logger.info("shutdown \n", message="API shutting down")
 
 
 app = FastAPI(
@@ -18,4 +28,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.add_middleware(RequestLoggingMiddleware)
 app.include_router(health.router)
+
+
