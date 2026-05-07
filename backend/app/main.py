@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse
 from app.core.database import close_pool
 from app.core.logging_config import setup_logging
 from app.core.middleware import RequestLoggingMiddleware
-from app.routers import health
+from app.routers import health, projects
 
 logger = structlog.get_logger()
 
@@ -16,10 +16,10 @@ logger = structlog.get_logger()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     setup_logging()
-    logger.info("startup\n", message="API starting up")
+    logger.info("startup", message="API starting up")
     yield
     await close_pool()
-    logger.info("shutdown \n", message="API shutting down")
+    logger.info("shutdown", message="API shutting down")
 
 
 app = FastAPI(
@@ -30,5 +30,19 @@ app = FastAPI(
 
 app.add_middleware(RequestLoggingMiddleware)
 app.include_router(health.router)
+app.include_router(projects.router)
 
 
+@app.exception_handler(Exception)
+async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONResponse:
+    logger.error(
+        "unhandled_exception",
+        method=request.method,
+        path=request.url.path,
+        error=str(exc),
+        traceback=traceback.format_exc(),
+    )
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal server error"},
+    )
