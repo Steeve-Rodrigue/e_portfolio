@@ -10,7 +10,7 @@ from app.core.logging_config import setup_logging
 from app.core.middleware import (
     RequestLoggingMiddleware,
 )
-from app.routers import health, projects
+from app.routers import health, projects ,profile
 
 logger = structlog.get_logger()
 
@@ -33,6 +33,7 @@ app = FastAPI(
 app.add_middleware(RequestLoggingMiddleware)
 app.include_router(health.router)
 app.include_router(projects.router)
+app.include_router(profile.router)
 
 
 @app.exception_handler(Exception)
