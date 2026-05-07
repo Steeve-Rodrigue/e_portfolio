@@ -1,0 +1,50 @@
+- slug: "sentiment-analysis-api"
+  title: "Sentiment Analysis API"
+  problem_statement: |
+    Build a production-ready REST API that classifies the sentiment of text
+    (positive, negative, neutral) with sub-100ms latency.
+  methodology: |
+    Fine-tuned a DistilBERT model on the SST-2 dataset.
+    Served via FastAPI with model caching and batch inference support.
+  results_impact: |
+    Achieved 92% accuracy on the test set with an average latency of 45ms.
+  metrics:
+    accuracy: 0.92
+    latency_ms: 45
+  tech_stack:
+    - Python
+    - FastAPI
+    - HuggingFace Transformers
+    - Docker
+  categories:
+    - NLP
+  github_url: ""
+  demo_url: ""
+  featured: true
+  display_order: 1
+
+- slug: "churn-prediction"
+  title: "Customer Churn Prediction"
+  problem_statement: |
+    Predict which telecom customers are likely to churn in the next 30 days
+    to enable proactive retention campaigns.
+  methodology: |
+    Trained an XGBoost classifier on 3 years of customer behaviour data.
+    Feature engineering included recency, frequency and monetary features.
+  results_impact: |
+    Reduced churn by 18% in A/B test. Model deployed as a weekly batch job.
+  metrics:
+    auc_roc: 0.89
+    precision: 0.81
+    recall: 0.76
+  tech_stack:
+    - Python
+    - XGBoost
+    - scikit-learn
+    - Pandas
+  categories:
+    - Regression
+  github_url: ""
+  demo_url: ""
+  featured: true
+  display_order: 2
