@@ -10,7 +10,7 @@ from app.core.logging_config import setup_logging
 from app.core.middleware import (
     RequestLoggingMiddleware,
 )
-from app.routers import health, projects ,profile
+from app.routers import health, profile, projects
 
 logger = structlog.get_logger()
 
