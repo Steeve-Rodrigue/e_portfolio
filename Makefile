@@ -25,7 +25,7 @@ uvicorn:
 	cd backend && uv run uvicorn app.main:app
 
 coverage:
-	cd backend && uv run pytest --cov=app tests/ 
+	cd backend && uv run pytest --cov=app tests/
 
 restart:
 	sudo docker compose restart api

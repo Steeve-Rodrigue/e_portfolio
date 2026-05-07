@@ -10,7 +10,7 @@ from app.core.logging_config import setup_logging
 from app.core.middleware import (
     RequestLoggingMiddleware,
 )
-from app.routers import health, profile, projects
+from app.routers import auth, health, message, profile, projects
 
 logger = structlog.get_logger()
 
@@ -34,6 +34,8 @@ app.add_middleware(RequestLoggingMiddleware)
 app.include_router(health.router)
 app.include_router(projects.router)
 app.include_router(profile.router)
+app.include_router(message.router)
+app.include_router(auth.router)
 
 
 @app.exception_handler(Exception)

@@ -1,8 +1,9 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
 from app.core.database import get_pool
 from app.models.profile import ProfileResponse, ProfileUpdate
 from app.services import profile_service
+from app.services.auth_service import require_admin
 
 router = APIRouter(prefix="/api/v1/profile", tags=["profile"])
 
@@ -17,7 +18,7 @@ async def get_profile():
 
 
 @router.patch("", response_model=ProfileResponse)
-async def update_profile(data: ProfileUpdate):
+async def update_profile(data: ProfileUpdate, _: str = Depends(require_admin)):
     pool = await get_pool()
     profile = await profile_service.update(pool, data)
     if not profile:
