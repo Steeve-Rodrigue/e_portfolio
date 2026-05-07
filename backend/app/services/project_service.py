@@ -1,6 +1,9 @@
 import asyncpg
 
-from app.models.project import ProjectCreate, ProjectUpdate
+from app.models.project import (
+    ProjectCreate,
+    ProjectUpdate,
+)
 
 
 async def get_all(pool: asyncpg.Pool, page: int, size: int) -> tuple[list[dict], int]:
@@ -21,7 +24,10 @@ async def get_all(pool: asyncpg.Pool, page: int, size: int) -> tuple[list[dict],
 
 async def get_by_slug(pool: asyncpg.Pool, slug: str) -> dict | None:
     async with pool.acquire() as conn:
-        row = await conn.fetchrow("SELECT * FROM projects WHERE slug = $1", slug)
+        row = await conn.fetchrow(
+            "SELECT * FROM projects WHERE slug = $1",
+            slug,
+        )
     return dict(row) if row else None
 
 
@@ -42,15 +48,31 @@ async def create(pool: asyncpg.Pool, data: ProjectCreate) -> dict:
                 $15, $16
             ) RETURNING *
             """,
-            d["slug"], d["title"], d["problem_statement"], d["methodology"],
-            d["results_impact"], d["metrics"], d["tech_stack"], d["categories"],
-            d["github_url"], d["demo_url"], d["notebook_url"], d["thumbnail_url"],
-            d["has_ml_demo"], d["ml_endpoint"], d["featured"], d["display_order"],
+            d["slug"],
+            d["title"],
+            d["problem_statement"],
+            d["methodology"],
+            d["results_impact"],
+            d["metrics"],
+            d["tech_stack"],
+            d["categories"],
+            d["github_url"],
+            d["demo_url"],
+            d["notebook_url"],
+            d["thumbnail_url"],
+            d["has_ml_demo"],
+            d["ml_endpoint"],
+            d["featured"],
+            d["display_order"],
         )
     return dict(row)
 
 
-async def update(pool: asyncpg.Pool, slug: str, data: ProjectUpdate) -> dict | None:
+async def update(
+    pool: asyncpg.Pool,
+    slug: str,
+    data: ProjectUpdate,
+) -> dict | None:
     fields = data.model_dump(exclude_unset=True)
     if not fields:
         return await get_by_slug(pool, slug)
@@ -70,5 +92,8 @@ async def update(pool: asyncpg.Pool, slug: str, data: ProjectUpdate) -> dict | N
 
 async def delete(pool: asyncpg.Pool, slug: str) -> bool:
     async with pool.acquire() as conn:
-        result = await conn.execute("DELETE FROM projects WHERE slug = $1", slug)
+        result = await conn.execute(
+            "DELETE FROM projects WHERE slug = $1",
+            slug,
+        )
     return result == "DELETE 1"

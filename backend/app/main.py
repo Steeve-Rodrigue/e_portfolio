@@ -7,7 +7,9 @@ from fastapi.responses import JSONResponse
 
 from app.core.database import close_pool
 from app.core.logging_config import setup_logging
-from app.core.middleware import RequestLoggingMiddleware
+from app.core.middleware import (
+    RequestLoggingMiddleware,
+)
 from app.routers import health, projects
 
 logger = structlog.get_logger()
