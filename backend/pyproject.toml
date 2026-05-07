@@ -21,3 +21,14 @@ dev = [
     "pytest-cover>=3.0.0",
     "ruff>=0.15.12",
 ]
+
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
