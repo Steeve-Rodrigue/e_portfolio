@@ -91,7 +91,7 @@ async def test_update_profile_partial(client, token):
 
 async def test_update_profile_requires_auth(client):
     response = await client.patch(BASE, json={"name": "Hacker"})
-    assert response.status_code == 403
+    assert response.status_code == 401
 
 
 async def test_update_profile_empty_body(client, token):

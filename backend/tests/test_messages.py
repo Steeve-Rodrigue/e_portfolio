@@ -62,7 +62,7 @@ async def test_send_message(client):
 
 async def test_list_messages_requires_auth(client):
     response = await client.get(BASE)
-    assert response.status_code == 403
+    assert response.status_code == 401
 
 
 async def test_list_messages(client, token):
