@@ -18,6 +18,6 @@ CREATE TABLE projects (
     display_order     int DEFAULT 0,
     created_at        timestamp DEFAULT now()
 );
-
-CREATE INDEX idx_projects_featured      ON projects(featured);
+-- projects: frontend filters featured projects by display_order
+CREATE INDEX idx_projects_featured ON projects(featured, display_order ASC);
 CREATE INDEX idx_projects_display_order ON projects(display_order);

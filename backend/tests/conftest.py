@@ -7,7 +7,9 @@ _TRUNCATE = """
 TRUNCATE TABLE
     projects,
     experience,
-    messages
+    messages,
+    learning_items,
+    visitors
 CASCADE
 """
 

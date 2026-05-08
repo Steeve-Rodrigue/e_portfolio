@@ -1,8 +1,9 @@
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from app.core.database import get_pool
+from app.core.limiter import limiter
 from app.models.message import MessageCreate, MessageResponse
 from app.services import message_service
 from app.services.auth_service import require_admin
@@ -11,7 +12,8 @@ router = APIRouter(prefix="/api/v1/messages", tags=["messages"])
 
 
 @router.post("", response_model=MessageResponse, status_code=201)
-async def send_message(data: MessageCreate):
+@limiter.limit("10/minute")
+async def send_message(request: Request, data: MessageCreate):
     pool = await get_pool()
     return await message_service.create(pool, data)
 
