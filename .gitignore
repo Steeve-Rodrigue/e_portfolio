@@ -36,3 +36,7 @@ Thumbs.db
 
 # k8s secrets (if generated locally)
 k8s/secrets/
+
+# Seed data — contains personal info, managed locally
+backend/data/*
+!backend/data/.gitkeep
