@@ -1,6 +1,6 @@
 import asyncpg
 
-from app.models.skill import SkillCreate, SkillUpdate
+from app.models.skills import SkillCreate, SkillUpdate
 
 
 async def get_all(pool: asyncpg.Pool) -> list[dict]:
