@@ -5,12 +5,14 @@ from app.core.config import settings
 from app.main import app
 
 AUTH = "/api/v1/auth/login"
-BASE = "/api/v1/certifications"
+BASE = "/api/v1/experience"
 
 SAMPLE = {
-    "name": "AWS Cloud Practitioner",
-    "issuer": "Amazon",
-    "issued_at": "2024-03-01",
+    "type": "job",
+    "company": "Acme Corp",
+    "role": "Data Scientist",
+    "start_date": "2023-01-01",
+    "is_current": True,
 }
 
 
@@ -37,7 +39,7 @@ async def token(client):
 
 
 @pytest.fixture
-async def cert(client, token):
+async def entry(client, token):
     response = await client.post(
         BASE, json=SAMPLE, headers={"Authorization": f"Bearer {token}"}
     )
@@ -45,40 +47,65 @@ async def cert(client, token):
     return response.json()
 
 
-async def test_list_certifications_empty(client):
+async def test_list_experience_empty(client):
     response = await client.get(BASE)
     assert response.status_code == 200
-    assert isinstance(response.json(), list)
+    assert response.json() == []
 
 
-async def test_create_certification(client, token):
+async def test_create_experience(client, token):
     response = await client.post(
         BASE, json=SAMPLE, headers={"Authorization": f"Bearer {token}"}
     )
     assert response.status_code == 201
     data = response.json()
-    assert data["name"] == "AWS Cloud Practitioner"
-    assert data["issuer"] == "Amazon"
+    assert data["company"] == "Acme Corp"
+    assert data["type"] == "job"
+    assert data["is_current"] is True
 
 
-async def test_create_certification_requires_auth(client):
+async def test_create_experience_requires_auth(client):
     response = await client.post(BASE, json=SAMPLE)
     assert response.status_code == 401
 
 
-async def test_delete_certification(client, token, cert):
+async def test_update_experience(client, token, entry):
+    response = await client.patch(
+        f"{BASE}/{entry['id']}",
+        json={"role": "Senior Data Scientist"},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert response.status_code == 200
+    assert response.json()["role"] == "Senior Data Scientist"
+
+
+async def test_update_experience_requires_auth(client, entry):
+    response = await client.patch(f"{BASE}/{entry['id']}", json={"role": "x"})
+    assert response.status_code == 401
+
+
+async def test_update_experience_not_found(client, token):
+    response = await client.patch(
+        f"{BASE}/00000000-0000-0000-0000-000000000000",
+        json={"role": "x"},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert response.status_code == 404
+
+
+async def test_delete_experience(client, token, entry):
     response = await client.delete(
-        f"{BASE}/{cert['id']}", headers={"Authorization": f"Bearer {token}"}
+        f"{BASE}/{entry['id']}", headers={"Authorization": f"Bearer {token}"}
     )
     assert response.status_code == 204
 
 
-async def test_delete_certification_requires_auth(client, cert):
-    response = await client.delete(f"{BASE}/{cert['id']}")
+async def test_delete_experience_requires_auth(client, entry):
+    response = await client.delete(f"{BASE}/{entry['id']}")
     assert response.status_code == 401
 
 
-async def test_delete_certification_not_found(client, token):
+async def test_delete_experience_not_found(client, token):
     response = await client.delete(
         f"{BASE}/00000000-0000-0000-0000-000000000000",
         headers={"Authorization": f"Bearer {token}"},

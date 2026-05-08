@@ -48,7 +48,7 @@ async def item(client, token):
 async def test_list_learning_empty(client):
     response = await client.get(BASE)
     assert response.status_code == 200
-    assert isinstance(response.json(), list)
+    assert response.json() == []
 
 
 async def test_create_learning_item(client, token):
