@@ -72,6 +72,55 @@ def seed_projects(client: httpx.Client, base_url: str, token: str) -> None:
             print(f"✓ Project created:  {slug}")
 
 
+def _replace_all(
+    client: httpx.Client,
+    base_url: str,
+    token: str,
+    resource: str,
+    items: list[dict],
+    label_fn,
+) -> None:
+    """Delete all existing records for a resource, then POST the full list from YAML."""
+    auth = {"Authorization": f"Bearer {token}"}
+    existing = client.get(f"{base_url}/api/v1/{resource}").json()
+    for item in existing:
+        client.delete(
+            f"{base_url}/api/v1/{resource}/{item['id']}", headers=auth
+        ).raise_for_status()
+    for item in items:
+        client.post(
+            f"{base_url}/api/v1/{resource}", json=item, headers=auth
+        ).raise_for_status()
+        print(f"✓ {resource.capitalize()} created: {label_fn(item)}")
+
+
+def seed_experience(client: httpx.Client, base_url: str, token: str) -> None:
+    items = yaml.safe_load((DATA_DIR / "experience.yaml").read_text())
+    _replace_all(
+        client,
+        base_url,
+        token,
+        "experience",
+        items,
+        lambda x: f"{x['role']} @ {x['company']}",
+    )
+
+
+def seed_certifications(client: httpx.Client, base_url: str, token: str) -> None:
+    items = yaml.safe_load((DATA_DIR / "certifications.yaml").read_text())
+    _replace_all(client, base_url, token, "certifications", items, lambda x: x["name"])
+
+
+def seed_learning(client: httpx.Client, base_url: str, token: str) -> None:
+    items = yaml.safe_load((DATA_DIR / "learning.yaml").read_text())
+    _replace_all(client, base_url, token, "learning", items, lambda x: x["title"])
+
+
+def seed_skills(client: httpx.Client, base_url: str, token: str) -> None:
+    items = yaml.safe_load((DATA_DIR / "skills.yaml").read_text())
+    _replace_all(client, base_url, token, "skills", items, lambda x: x["name"])
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Seed the portfolio database")
     parser.add_argument("--base-url", default="http://localhost:8000")
@@ -83,6 +132,10 @@ def main() -> None:
         print("✓ Authenticated\n")
         seed_profile(client, args.base_url, token)
         seed_projects(client, args.base_url, token)
+        seed_experience(client, args.base_url, token)
+        seed_certifications(client, args.base_url, token)
+        seed_learning(client, args.base_url, token)
+        seed_skills(client, args.base_url, token)
         print("\nDone.")
 
 

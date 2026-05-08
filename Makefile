@@ -3,7 +3,7 @@
 build:
 	sudo docker compose up -d --build
 
-stop:
+down:
 	sudo docker compose down
 
 logs:
@@ -13,7 +13,7 @@ db-shell:
 	sudo docker compose exec db psql -U portfolio_user -d portfolio
 
 test:
-	cd backend && uv run pytest tests/ -v
+	cd backend && POSTGRES_DB=portfolio_test uv run pytest tests/ -v
 
 lint:
 	cd backend && uv run ruff check app/

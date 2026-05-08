@@ -20,6 +20,7 @@ from app.routers import (
     ml_model,
     profile,
     projects,
+    skills,
 )
 
 logger = structlog.get_logger()
@@ -50,6 +51,7 @@ app.include_router(ml_model.router)
 app.include_router(experience.router)
 app.include_router(certifications.router)
 app.include_router(learning_item.router)
+app.include_router(skills.router)
 
 
 @app.exception_handler(Exception)
