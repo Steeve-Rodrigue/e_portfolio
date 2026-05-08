@@ -23,6 +23,6 @@ async def clean_db():
     """
     database._pool = None
     pool = await get_pool()
-    # async with pool.acquire() as conn:
-    #     await conn.execute(_TRUNCATE)
+    async with pool.acquire() as conn:
+        await conn.execute(_TRUNCATE)
     yield
