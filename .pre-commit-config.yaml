@@ -18,3 +18,19 @@ repos:
         files: ^backend/app/
       - id: ruff-format
         files: ^backend/app/
+
+  - repo: local
+    hooks:
+      - id: frontend-eslint
+        name: ESLint (frontend)
+        entry: frontend/node_modules/.bin/eslint --fix
+        language: system
+        files: ^frontend/.*\.(ts|tsx)$
+        pass_filenames: true
+
+      - id: frontend-prettier
+        name: Prettier (frontend)
+        entry: frontend/node_modules/.bin/prettier --write
+        language: system
+        files: ^frontend/.*\.(ts|tsx|css|json|md)$
+        pass_filenames: true
