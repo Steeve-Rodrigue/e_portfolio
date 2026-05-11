@@ -1,19 +1,26 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans, Be_Vietnam_Pro } from 'next/font/google'
+import { Space_Grotesk, Inter, Work_Sans } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import { QueryProvider } from '@/providers/QueryProvider'
+import { Navbar } from '@/components/layout/Navbar'
 
-const jakarta = Plus_Jakarta_Sans({
+const grotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-jakarta',
-  weight: ['400', '600', '700', '800'],
+  variable: '--font-grotesk',
+  weight: ['400', '500', '600', '700'],
 })
 
-const vietnam = Be_Vietnam_Pro({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-vietnam',
-  weight: ['400', '600', '700'],
+  variable: '--font-inter',
+  weight: ['400', '500', '600', '700'],
+})
+
+const workSans = Work_Sans({
+  subsets: ['latin'],
+  variable: '--font-kanit',
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -28,9 +35,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={cn(jakarta.variable, vietnam.variable)}>
-      <body className="bg-[#F7FAF9] ">
-        <QueryProvider>{children}</QueryProvider>
+    <html lang="en" className={cn(grotesk.variable, inter.variable, workSans.variable)}>
+      <body>
+        <QueryProvider>
+          <Navbar />
+          <main className="pt-20">{children}</main>
+        </QueryProvider>
       </body>
     </html>
   )
