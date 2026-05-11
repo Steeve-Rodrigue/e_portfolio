@@ -16,6 +16,7 @@ const config: Config = {
       fontFamily: {
         grotesk: ['var(--font-grotesk)', 'sans-serif'],
         inter: ['var(--font-inter)', 'sans-serif'],
+        workSans: ['var(--font-work-sans)', 'sans-serif'],
       },
       colors: {
         mint: '#E0F5F0',
