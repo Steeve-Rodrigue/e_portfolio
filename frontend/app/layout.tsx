@@ -4,6 +4,7 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import { QueryProvider } from '@/providers/QueryProvider'
 import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
 
 const grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -40,6 +41,7 @@ export default function RootLayout({
         <QueryProvider>
           <Navbar />
           <main className="pt-20">{children}</main>
+          <Footer />
         </QueryProvider>
       </body>
     </html>
