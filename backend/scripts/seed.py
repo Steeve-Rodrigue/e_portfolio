@@ -112,7 +112,7 @@ def seed_certifications(client: httpx.Client, base_url: str, token: str) -> None
 
 
 def seed_learning(client: httpx.Client, base_url: str, token: str) -> None:
-    items = yaml.safe_load((DATA_DIR / "learning.yaml").read_text())
+    items = yaml.safe_load((DATA_DIR / "learning_item.yaml").read_text())
     _replace_all(client, base_url, token, "learning", items, lambda x: x["title"])
 
 
