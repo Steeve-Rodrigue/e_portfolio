@@ -1,7 +1,5 @@
-from pydantic_settings import (
-    BaseSettings,
-    SettingsConfigDict,
-)
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -13,11 +11,13 @@ class Settings(BaseSettings):
     app_port: int = 8000
     debug: bool = False
 
-    postgres_host: str
+    # Fly.io injects DATABASE_URL via `fly postgres attach`
+    pg_dsn: str | None = Field(None, alias="DATABASE_URL")
+    postgres_host: str = ""
     postgres_port: int = 5432
-    postgres_db: str
-    postgres_user: str
-    postgres_password: str
+    postgres_db: str = ""
+    postgres_user: str = ""
+    postgres_password: str = ""
 
     redis_host: str = "localhost"
     redis_port: int = 6379
@@ -30,6 +30,8 @@ class Settings(BaseSettings):
 
     @property
     def database_url(self) -> str:
+        if self.pg_dsn:
+            return self.pg_dsn
         return (
             f"postgresql://{self.postgres_user}:{self.postgres_password}"
             f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"

@@ -8,10 +8,14 @@ const config: Config = {
     './providers/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      md: '850px',
+      xl: '1280px',
+    },
     extend: {
       fontFamily: {
-        jakarta: ['var(--font-jakarta)', 'sans-serif'],
-        vietnam: ['var(--font-vietnam)', 'sans-serif'],
+        grotesk: ['var(--font-grotesk)', 'sans-serif'],
+        inter: ['var(--font-inter)', 'sans-serif'],
       },
       colors: {
         mint: '#E0F5F0',

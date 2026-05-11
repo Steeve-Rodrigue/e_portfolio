@@ -1,7 +1,7 @@
 .PHONY: build stop logs db-shell test lint fe-dev fe-lint fe-fmt fe-check
 
 build:
-	sudo docker compose up -d --build
+	sudo docker compose up  --build
 
 down:
 	sudo docker compose down -v
