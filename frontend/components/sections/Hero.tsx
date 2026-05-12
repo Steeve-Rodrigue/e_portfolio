@@ -3,6 +3,8 @@ import { FolderOpen, Download, MapPin } from 'lucide-react'
 import NeuralNetwork from '@/components/NeuralNetwork'
 import { HeroCadran } from '@/components/sections/HeroCadran'
 
+import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa'
+
 export function Hero() {
   return (
     <section
@@ -24,7 +26,7 @@ export function Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to right, #ffffff 0%, #ffffff 25%, transparent 95%)',
+          background: 'linear-gradient(to right, #ffffff 0%, #ffffff 25%, transparent 99%)',
           zIndex: 5,
           pointerEvents: 'none',
         }}
@@ -65,7 +67,7 @@ export function Hero() {
             className="text-3xl md:text-4xl xl:text-5xl tracking-tight leading-tight"
             style={{ color: '#0a0a0a' }}
           >
-            <span className="whitespace-nowrap font-bold">Steeve R</span>
+            <span className="whitespace-nowrap uppercase font-bold">Steeve </span>
           </h1>
           <p
             className="text-base md:text-xl xl:text-2xl font-bold tracking-widest uppercase font-kanit"
@@ -77,14 +79,15 @@ export function Hero() {
             className="text-sm md:text-base xl:text-lg leading-relaxed mt-2"
             style={{ color: '#444444' }}
           >
-            Conception de systèmes intelligents et d&apos interfaces élégantes. Ouvert aux nouvelles
-            opportunités.
+            Spécialisé en ingénierie de la donnée et machine learning, je construis des systèmes
+            scalables qui transforment des données complexes en valeur concrète, de l architecture
+            au modèle, du pipeline à l insight.
           </p>
 
           <div className="flex items-center gap-2 mt-2" style={{ color: '#444444' }}>
             <MapPin className="w-4 h-4 shrink-0" style={{ color: '#ff6a00' }} />
             <span className="text-xs md:text-sm xl:text-base tracking-wide font-grotesk">
-              Paris, France
+              Rennes, France
             </span>
           </div>
 
@@ -106,6 +109,36 @@ export function Hero() {
               <Download className="w-3.5 h-3.5 md:w-4 md:h-4" />
               Télécharger CV
             </a>
+            {/* Contact links */}
+            <div className="flex flex-wrap items-center gap-4 mt-4">
+              <span className="text-xs font-grotesk" style={{ color: '#888888' }}>
+                Me contacter ici :
+              </span>
+              <div className="flex items-center gap-3">
+                <a
+                  href="mailto:steeve-rodrigue.takougoum@eleve.ensai.fr"
+                  className="text-[#444444] transition-colors hover:text-[#ff6a00]"
+                >
+                  <FaEnvelope className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/steeve-takougoum-744989280/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#444444] transition-colors hover:text-[#ff6a00]"
+                >
+                  <FaLinkedinIn className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://github.com/steeve-rodrigue"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#444444] transition-colors hover:text-[#ff6a00]"
+                >
+                  <FaGithub className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
