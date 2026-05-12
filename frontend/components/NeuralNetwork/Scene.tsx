@@ -8,12 +8,12 @@ export default function Scene() {
     <Canvas
       camera={{ position: [-5, 0, 22], fov: 60 }}
       dpr={[1, 2]}
+      gl={{ alpha: true }}
       style={{ width: '100%', height: '100%' }}
     >
-      <color attach="background" args={['#050d1a']} />
       <Network />
       <EffectComposer>
-        <Bloom luminanceThreshold={0.2} luminanceSmoothing={0.9} intensity={0.6} mipmapBlur />
+        <Bloom luminanceThreshold={0.05} luminanceSmoothing={0.9} intensity={2} mipmapBlur />
       </EffectComposer>
     </Canvas>
   )

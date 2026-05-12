@@ -24,7 +24,6 @@ import {
 export default function Network() {
   const { camera, size } = useThree()
 
-  // Mutable flat arrays — no state, no re-renders
   const positions = useRef<Float32Array>(
     Float32Array.from({ length: NODE_COUNT * 3 }, () => (Math.random() - 0.5) * SCENE_BOUNDS * 2)
   )
@@ -144,7 +143,7 @@ export default function Network() {
       pulsesMesh.current.instanceMatrix.needsUpdate = true
     }
 
-    // 6 — camera drift (offset left on desktop so network appears on the right side)
+    // 6 — camera drift
     const t = clock.elapsedTime
     const xOffset = size.width < 850 ? CAMERA_X_OFFSET_MOBILE : CAMERA_X_OFFSET
     camera.position.x = xOffset + Math.sin(t * CAMERA_DRIFT_SPEED) * CAMERA_DRIFT_AMPLITUDE
@@ -179,7 +178,7 @@ export default function Network() {
         <sphereGeometry args={[PULSE_RADIUS, 8, 8]} />
         <meshStandardMaterial
           color="#ffffff"
-          emissive="#00e5ff"
+          emissive="#ff8800"
           emissiveIntensity={6}
           toneMapped={false}
         />
