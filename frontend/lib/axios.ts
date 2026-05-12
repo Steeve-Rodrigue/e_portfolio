@@ -1,7 +1,14 @@
 import axios from 'axios'
 
+// Server Components use API_URL (internal Docker network)
+// Client Components use NEXT_PUBLIC_API_URL (browser-accessible)
+const baseURL =
+  typeof window === 'undefined'
+    ? (process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000')
+    : (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000')
+
 export const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000',
+  baseURL,
   timeout: 10_000,
   headers: { 'Content-Type': 'application/json' },
 })

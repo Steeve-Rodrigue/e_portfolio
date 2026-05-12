@@ -19,3 +19,10 @@ export function truncate(str: string, maxLength: number): string {
   if (str.length <= maxLength) return str
   return str.slice(0, maxLength).trimEnd() + '…'
 }
+
+// Splits a full name into first names and surname (last word)
+export function splitName(fullName: string): { firstNames: string; surname: string } {
+  const parts = fullName.trim().split(' ')
+  if (parts.length === 1) return { firstNames: parts[0], surname: '' }
+  return { firstNames: parts.slice(0, -1).join(' '), surname: parts[parts.length - 1] }
+}

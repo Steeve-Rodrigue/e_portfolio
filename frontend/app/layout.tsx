@@ -25,7 +25,7 @@ const workSans = Work_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Steeve | Data Scientist',
+  title: 'Data Scientist',
   description:
     'Portfolio of Steeve — Data Scientist specialized in ML, analytics, and scalable data systems.',
 }
