@@ -1,5 +1,6 @@
 'use client'
 import { Canvas } from '@react-three/fiber'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import Network from './Network'
 
 export default function Scene() {
@@ -11,6 +12,9 @@ export default function Scene() {
     >
       <color attach="background" args={['#050d1a']} />
       <Network />
+      <EffectComposer>
+        <Bloom luminanceThreshold={0.2} luminanceSmoothing={0.9} intensity={0.6} mipmapBlur />
+      </EffectComposer>
     </Canvas>
   )
 }
