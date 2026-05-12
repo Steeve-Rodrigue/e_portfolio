@@ -8,9 +8,9 @@ import { cn } from '@/lib/utils'
 
 const navLinks = [
   { label: 'Accueil', href: '/' },
-  { label: 'Project', href: '/projects' },
+  { label: 'Projects', href: '/projects' },
   { label: 'Skills', href: '/skills' },
-  { label: 'Learning', href: '/learning' },
+  { label: 'Apprentissage', href: '/learning' },
   { label: 'Experiences', href: '/experience' },
 ]
 
@@ -18,7 +18,7 @@ type Lang = 'EN' | 'FR'
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [lang, setLang] = useState<Lang>('EN')
+  const [lang, setLang] = useState<Lang>('FR')
   const pathname = usePathname()
 
   return (

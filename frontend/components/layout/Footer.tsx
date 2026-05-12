@@ -4,17 +4,21 @@ import { FaGithub, FaLinkedinIn, FaEnvelope, FaCalendarAlt } from 'react-icons/f
 
 const directory = [
   { label: 'Accueil', href: '/' },
-  { label: 'Projects', href: '/projects' },
+  { label: 'Projets', href: '/projects' },
   { label: 'Skills', href: '/skills' },
-  { label: 'Learning', href: '/learning' },
-  { label: 'Experience', href: '/experience' },
+  { label: 'Apprentissage', href: '/learning' },
+  { label: 'Expérience', href: '/experience' },
   { label: 'E-CV', href: '/cv' },
 ]
 
 const connect = [
   { label: 'GitHub', href: 'https://github.com/steeve-rodrigue', icon: FaGithub },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/steeve-rodrigue', icon: FaLinkedinIn },
-  { label: 'Email', href: 'mailto:rodriguetakougoum@gmail.com', icon: FaEnvelope },
+  {
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/steeve-takougoum-744989280/',
+    icon: FaLinkedinIn,
+  },
+  { label: 'Email', href: 'mailto:steeve-rodrigue.takougoum@eleve.ensai.fr', icon: FaEnvelope },
   { label: 'Calendly', href: 'https://calendly.com/steeve', icon: FaCalendarAlt },
 ]
 
@@ -91,7 +95,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-10 pt-6 border-t border-white/10 text-center">
           <p className="text-xs text-white/40 tracking-widest uppercase">
-            © {new Date().getFullYear()} Steeve. All rights reserved.
+            © {new Date().getFullYear()} .4 All rights reserved.
           </p>
         </div>
       </div>
