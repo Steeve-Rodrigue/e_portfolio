@@ -80,7 +80,7 @@ export function Hero() {
             >
               <MapPin className="w-4 h-4 text-orange shrink-0" />
               <span className="text-sm font-semibold text-white/80 tracking-wide">
-                Paris, France
+                Rennes, France
               </span>
             </div>
 
