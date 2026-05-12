@@ -24,7 +24,7 @@ export function Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to right, #ffffff 0%, #ffffff 25%, transparent 62%)',
+          background: 'linear-gradient(to right, #ffffff 0%, #ffffff 25%, transparent 95%)',
           zIndex: 5,
           pointerEvents: 'none',
         }}
@@ -65,9 +65,7 @@ export function Hero() {
             className="text-3xl md:text-4xl xl:text-5xl tracking-tight leading-tight"
             style={{ color: '#0a0a0a' }}
           >
-            <span className="whitespace-nowrap font-bold">Steeve Rodrigue</span>
-            <br />
-            <span className="block uppercase font-normal">Haizawa</span>
+            <span className="whitespace-nowrap font-bold">Steeve R</span>
           </h1>
           <p
             className="text-base md:text-xl xl:text-2xl font-bold tracking-widest uppercase font-kanit"
@@ -106,7 +104,7 @@ export function Hero() {
               style={{ border: '1px solid #0a0a0a', color: '#0a0a0a' }}
             >
               <Download className="w-3.5 h-3.5 md:w-4 md:h-4" />
-              Télécharger le CV
+              Télécharger CV
             </a>
           </div>
         </div>
