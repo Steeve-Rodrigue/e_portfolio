@@ -1,0 +1,16 @@
+export const NODE_COUNT = 20
+export const CONNECT_THRESHOLD = 5
+export const MAX_CONNECTIONS = 3000
+export const NODE_SPEED = 0.9
+export const PULSE_SPEED = 0.012
+export const NODE_COLOR = '#33acdb'
+export const NODE_EMISSIVE = '#5975f1'
+export const NODE_EMISSIVE_INTENSITY = 10
+export const CONNECTION_OPACITY = 0.09
+export const NODE_RADIUS = 0.01
+export const PULSE_RADIUS = 0.09
+export const SCENE_BOUNDS = 8
+export const CAMERA_DRIFT_SPEED = 1
+export const CAMERA_DRIFT_AMPLITUDE = 0.1
+export const CAMERA_X_OFFSET = -15
+export const CAMERA_X_OFFSET_MOBILE = -3
