@@ -171,7 +171,7 @@ export async function Hero() {
 
         {/* Photo cadran — hidden below 400px */}
         <div className="[@media(max-width:600px)]:hidden flex items-center justify-center">
-          <HeroCadran />
+          <HeroCadran photoUrl={profile.calendly_url} />
         </div>
       </div>
     </section>
