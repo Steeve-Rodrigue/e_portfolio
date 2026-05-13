@@ -7,6 +7,11 @@ app = 'my-e-folio'
 primary_region = 'cdg'
 
 [build]
+  [build.args]
+    NEXT_PUBLIC_API_URL = "https://api-portfolio-backend.fly.dev"
+
+[env]
+  API_URL = "https://api-portfolio-backend.fly.dev"
 
 [http_service]
   internal_port = 3000
