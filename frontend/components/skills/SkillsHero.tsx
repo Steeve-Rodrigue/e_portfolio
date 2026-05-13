@@ -1,23 +1,18 @@
 export function SkillsHero() {
   return (
-    <section style={{ marginBottom: '4rem' }}>
+    <section style={{ marginBottom: '1.5rem' }}>
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         {/* Left — title */}
         <div>
           <p
-            className="font-grotesk text-xs font-bold tracking-widest uppercase mb-3"
+            className="font-grotesk text-xs md:text-sm font-bold tracking-widest uppercase mb-3"
             style={{ color: '#ff6a00' }}
           >
             Profil technique
           </p>
           <h1
-            className="font-grotesk font-extrabold uppercase"
-            style={{
-              fontSize: 'clamp(36px, 8vw, 112px)',
-              letterSpacing: '-0.03em',
-              color: '#070707',
-              lineHeight: 0.9,
-            }}
+            className="font-grotesk font-extrabold uppercase text-4xl md:text-6xl xl:text-[112px]"
+            style={{ letterSpacing: '-0.03em', color: '#070707', lineHeight: 0.9 }}
           >
             EXPERTISE
           </h1>

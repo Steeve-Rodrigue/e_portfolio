@@ -56,14 +56,14 @@ export default async function SkillsPage() {
             ].map(([n, l]) => (
               <div key={l} className="text-center">
                 <div
-                  className="font-grotesk font-extrabold leading-none"
-                  style={{ fontSize: 'clamp(20px, 4vw, 28px)', color: '#ff6a00' }}
+                  className="font-grotesk font-extrabold leading-none text-2xl md:text-3xl xl:text-4xl"
+                  style={{ color: '#ff6a00' }}
                 >
                   {n}
                 </div>
                 <div
-                  className="font-grotesk font-bold tracking-widest uppercase mt-1"
-                  style={{ fontSize: 10, color: '#aaa' }}
+                  className="font-grotesk font-bold tracking-widest uppercase mt-1 text-[10px] md:text-xs xl:text-sm"
+                  style={{ color: '#aaa' }}
                 >
                   {l}
                 </div>
@@ -78,26 +78,6 @@ export default async function SkillsPage() {
           </p>
         </div>
       </main>
-
-      <style>{`
-        .cluster-section { margin-bottom: 4.5rem; }
-        .cluster-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
-        .cluster-num { font-size: 13px; font-weight: 800; color: rgba(255,106,0,0.35); letter-spacing: 0.05em; padding-top: 2px; flex-shrink: 0; width: 28px; }
-        .skills-card { background: rgba(255,255,255,0.75); border: 1px solid rgba(255,106,0,0.12); border-radius: 14px; padding: 28px 32px; box-shadow: 0 2px 20px rgba(0,0,0,0.04), 0 0 0 1px rgba(255,255,255,0.8) inset; backdrop-filter: blur(8px); margin-left: 48px; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; }
-        .skill-item { display: flex; flex-direction: column; align-items: center; padding: 16px 8px 14px; border-radius: 10px; transition: background 0.2s, transform 0.2s; cursor: default; }
-        .skill-item:hover { background: rgba(255,106,0,0.06); transform: translateY(-3px); }
-        .skill-icon-wrap { height: 44px; display: flex; align-items: center; justify-content: center; }
-        .skill-name { font-size: 12px; font-weight: 600; color: #494551; text-align: center; margin-top: 10px; line-height: 1.3; max-width: 84px; }
-        @media (max-width: 849px) {
-          .skills-card { margin-left: 0; padding: 16px 12px; }
-          .cluster-num { display: none; }
-          .skills-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 4px; }
-          .skill-item { padding: 10px 4px 8px; }
-          .skill-name { font-size: 11px; }
-          .cluster-section { margin-bottom: 3rem; }
-        }
-      `}</style>
     </div>
   )
 }
