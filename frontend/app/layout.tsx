@@ -24,8 +24,10 @@ const workSans = Work_Sans({
   weight: ['400', '500', '600', '700'],
 })
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
-  title: 'Data Scientist',
+  title: 'Steeve | Data Scientist',
   description:
     'Portfolio of Steeve — Data Scientist specialized in ML, analytics, and scalable data systems.',
 }

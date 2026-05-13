@@ -1,0 +1,36 @@
+export function SkillsHero() {
+  return (
+    <section style={{ marginBottom: '4rem' }}>
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        {/* Left — title */}
+        <div>
+          <p
+            className="font-grotesk text-xs font-bold tracking-widest uppercase mb-3"
+            style={{ color: '#ff6a00' }}
+          >
+            Profil technique
+          </p>
+          <h1
+            className="font-grotesk font-extrabold uppercase"
+            style={{
+              fontSize: 'clamp(36px, 8vw, 112px)',
+              letterSpacing: '-0.03em',
+              color: '#070707',
+              lineHeight: 0.9,
+            }}
+          >
+            EXPERTISE
+          </h1>
+        </div>
+      </div>
+
+      <div
+        style={{
+          height: 1,
+          background: 'linear-gradient(to right, #ff6a00, rgba(255,106,0,0.1))',
+          marginTop: 32,
+        }}
+      />
+    </section>
+  )
+}

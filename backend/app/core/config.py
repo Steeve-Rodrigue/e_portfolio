@@ -22,6 +22,8 @@ class Settings(BaseSettings):
     redis_host: str = "localhost"
     redis_port: int = 6379
 
+    cors_origins: list[str] = ["http://localhost:3000", "http://localhost:3001"]
+
     jwt_secret: str = "changeme"
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 1440

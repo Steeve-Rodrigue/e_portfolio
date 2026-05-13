@@ -19,7 +19,7 @@ export default function Loading() {
       {/* Text */}
       <div className="flex flex-col items-center gap-2">
         <p className="text-slate font-grotesk font-bold text-lg tracking-tight">
-          Steeve<span className="text-orange">.</span>
+          Loading<span className="text-orange">.</span>
         </p>
         <div className="flex items-center gap-1.5">
           <span
