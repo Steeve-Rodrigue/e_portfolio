@@ -11,7 +11,7 @@ export function SkillsHero() {
             Profil technique
           </p>
           <h1
-            className="font-grotesk font-extrabold uppercase text-4xl md:text-6xl xl:text-[112px]"
+            className="font-grotesk font-extrabold uppercase text-4xl md:text-6xl xl:text-[62px]"
             style={{ letterSpacing: '-0.03em', color: '#070707', lineHeight: 0.9 }}
           >
             EXPERTISE

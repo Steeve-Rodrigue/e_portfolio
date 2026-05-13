@@ -44,7 +44,7 @@ export function ClusterSection({
           </div>
           {categories && (
             <p
-              className="font-grotesk text-sm md:text-base xl:text-lg"
+              className=" text-sm md:text-base  xl:text-lg"
               style={{ color: '#1d1b20', letterSpacing: '0.04em' }}
             >
               {categories}
