@@ -43,8 +43,242 @@
     - scikit-learn
     - Pandas
   categories:
-    - Regression
+    - Classification
   github_url: ""
   demo_url: ""
   featured: true
   display_order: 2
+
+- slug: "real-time-fraud-detection"
+  title: "Real-Time Fraud Detection"
+  problem_statement: |
+    Detect fraudulent credit card transactions in real time
+    with minimal false positives to avoid blocking legitimate users.
+  methodology: |
+    Built an ensemble model combining Isolation Forest and LightGBM.
+    Deployed on a Kafka stream with sub-50ms inference per transaction.
+  results_impact: |
+    Detected 94% of fraud cases with a false positive rate under 0.3%.
+    Processing 10,000 transactions per second in production.
+  metrics:
+    recall: 0.94
+    false_positive_rate: 0.003
+    latency_ms: 38
+  tech_stack:
+    - Python
+    - Kafka
+    - LightGBM
+    - FastAPI
+    - Docker
+  categories:
+    - Classification
+    - Streaming
+  github_url: ""
+  demo_url: ""
+  featured: true
+  display_order: 3
+
+- slug: "llm-document-qa"
+  title: "LLM Document Q&A System"
+  problem_statement: |
+    Enable non-technical users to query large internal PDF documents
+    using natural language without manual search.
+  methodology: |
+    Built a RAG pipeline using LangChain, FAISS vector store,
+    and a fine-tuned Mistral-7B as the generation model.
+    Documents chunked and embedded with sentence-transformers.
+  results_impact: |
+    Reduced document search time by 70%. Deployed internally
+    for a team of 50 analysts with 89% user satisfaction score.
+  metrics:
+    answer_relevance: 0.89
+    retrieval_accuracy: 0.91
+  tech_stack:
+    - Python
+    - LangChain
+    - FAISS
+    - HuggingFace
+    - FastAPI
+  categories:
+    - NLP
+    - LLM
+  github_url: ""
+  demo_url: ""
+  featured: true
+  display_order: 4
+
+- slug: "energy-consumption-forecast"
+  title: "Energy Consumption Forecasting"
+  problem_statement: |
+    Forecast hourly electricity consumption for a regional grid
+    operator to optimize energy procurement and reduce costs.
+  methodology: |
+    Combined a Prophet baseline with an LSTM model for residual correction.
+    External features included weather data, holidays and economic indicators.
+  results_impact: |
+    Achieved a MAPE of 2.3% on 48-hour forecasts.
+    Estimated annual savings of €1.2M in procurement costs.
+  metrics:
+    mape: 0.023
+    rmse: 142.5
+  tech_stack:
+    - Python
+    - PyTorch
+    - Prophet
+    - Pandas
+    - Airflow
+  categories:
+    - Time Series
+    - Forecasting
+  github_url: ""
+  demo_url: ""
+  featured: false
+  display_order: 5
+
+- slug: "mlops-pipeline"
+  title: "End-to-End MLOps Pipeline"
+  problem_statement: |
+    Build a fully automated ML pipeline that handles data ingestion,
+    model training, evaluation, versioning and deployment with zero
+    manual intervention.
+  methodology: |
+    Orchestrated with Airflow, model versioning via MLflow,
+    containerized with Docker and deployed on Kubernetes.
+    Automated retraining triggered by data drift detection.
+  results_impact: |
+    Reduced model deployment time from 2 weeks to 4 hours.
+    Zero downtime deployments with automated rollback on regression.
+  metrics:
+    deployment_time_hours: 4
+    uptime: 0.999
+  tech_stack:
+    - Python
+    - Airflow
+    - MLflow
+    - Docker
+    - Kubernetes
+    - GitHub Actions
+  categories:
+    - MLOps
+    - Infrastructure
+  github_url: ""
+  demo_url: ""
+  featured: true
+  display_order: 6
+
+- slug: "computer-vision-quality-control"
+  title: "Computer Vision Quality Control"
+  problem_statement: |
+    Automate visual inspection of manufactured parts on an
+    assembly line to detect surface defects in real time.
+  methodology: |
+    Fine-tuned a YOLOv8 model on a custom dataset of 12,000
+    annotated images. Deployed on edge hardware with TensorRT optimization.
+  results_impact: |
+    Achieved 97.4% defect detection rate, reducing manual inspection
+    costs by 60% and cutting defect escape rate to under 0.1%.
+  metrics:
+    map50: 0.974
+    inference_ms: 12
+    defect_escape_rate: 0.001
+  tech_stack:
+    - Python
+    - PyTorch
+    - YOLOv8
+    - TensorRT
+    - Docker
+  categories:
+    - Computer Vision
+  github_url: ""
+  demo_url: ""
+  featured: false
+  display_order: 7
+
+- slug: "recommendation-system"
+  title: "E-Commerce Recommendation System"
+  problem_statement: |
+    Increase average order value on an e-commerce platform by
+    recommending relevant products to users in real time.
+  methodology: |
+    Built a hybrid recommender combining collaborative filtering
+    (ALS matrix factorization) with a content-based XGBoost ranker.
+    Served via a low-latency Redis-backed API.
+  results_impact: |
+    Increased click-through rate by 34% and average order value by 12%.
+    Serving 500K daily active users with p99 latency under 20ms.
+  metrics:
+    ctr_lift: 0.34
+    aov_lift: 0.12
+    latency_p99_ms: 18
+  tech_stack:
+    - Python
+    - Spark
+    - XGBoost
+    - Redis
+    - FastAPI
+  categories:
+    - Recommendation
+    - Classification
+  github_url: ""
+  demo_url: ""
+  featured: false
+  display_order: 8
+
+- slug: "data-pipeline-dbt"
+  title: "Analytics Data Pipeline with dbt"
+  problem_statement: |
+    Replace a fragile spaghetti SQL codebase with a maintainable,
+    tested and documented analytics pipeline for a SaaS company.
+  methodology: |
+    Redesigned the entire data warehouse using dbt on BigQuery.
+    Implemented data quality tests, lineage documentation and
+    incremental models for performance optimization.
+  results_impact: |
+    Reduced pipeline runtime by 65%. Zero data quality incidents
+    in 6 months post-migration. Onboarding time for new analysts
+    cut from 2 weeks to 3 days.
+  metrics:
+    pipeline_runtime_reduction: 0.65
+    data_quality_incidents: 0
+  tech_stack:
+    - SQL
+    - dbt
+    - BigQuery
+    - Python
+    - Airflow
+  categories:
+    - Data Engineering
+  github_url: ""
+  demo_url: ""
+  featured: false
+  display_order: 9
+
+- slug: "clinical-trial-analysis"
+  title: "Clinical Trial Statistical Analysis"
+  problem_statement: |
+    Analyse a randomised controlled trial dataset to assess
+    the efficacy of a new drug on patient recovery time.
+  methodology: |
+    Applied survival analysis (Kaplan-Meier, Cox regression)
+    and mixed-effects models. Accounted for confounders via
+    propensity score matching. Full reproducibility via R Markdown.
+  results_impact: |
+    Identified a statistically significant reduction in recovery
+    time of 3.2 days (p < 0.001). Results contributed to a
+    peer-reviewed publication.
+  metrics:
+    p_value: 0.001
+    recovery_reduction_days: 3.2
+    effect_size: 0.42
+  tech_stack:
+    - R
+    - survival
+    - ggplot2
+    - R Markdown
+  categories:
+    - Statistics
+    - Research
+  github_url: ""
+  demo_url: ""
+  featured: false
+  display_order: 10
