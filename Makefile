@@ -1,7 +1,7 @@
 .PHONY: build stop logs db-shell test lint fe-dev fe-lint fe-fmt fe-check
 
 build:
-	sudo docker compose up  --build
+	sudo docker compose up  --build && uv run python seed.py  --base-url http://localhost:8000
 
 down:
 	sudo docker compose down -v

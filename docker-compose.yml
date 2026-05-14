@@ -48,18 +48,18 @@ services:
       retries: 6
       start_period: 30s
 
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        NEXT_PUBLIC_API_URL: http://localhost:8000
-    ports:
-      - "3000:3000"
-    depends_on:
-      api:
-        condition: service_healthy
-    environment:
-      API_URL: http://api:8000
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     args:
+  #       NEXT_PUBLIC_API_URL: http://localhost:8000
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     api:
+  #       condition: service_healthy
+  #   environment:
+  #     API_URL: http://api:8000
 
   adminer:
     image: adminer:latest

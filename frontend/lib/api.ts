@@ -18,7 +18,15 @@ export const getProfile = () => apiClient.get<Profile>('/api/v1/profile').then((
 
 export const getSkills = () => apiClient.get<Skill[]>('/api/v1/skills').then((r) => r.data)
 
-export const getProjects = () => apiClient.get<Project[]>('/api/v1/projects').then((r) => r.data)
+export const getProjects = () =>
+  apiClient
+    .get<{
+      items: Project[]
+      total: number
+      page: number
+      size: number
+    }>('/api/v1/projects?size=100')
+    .then((r) => r.data.items)
 
 export const getProject = (slug: string) =>
   apiClient.get<Project>(`/api/v1/projects/${slug}`).then((r) => r.data)
