@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { FileText, Menu, X, Network } from 'lucide-react'
+import { Menu, X, Network } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
@@ -11,7 +11,7 @@ const navLinks = [
   { label: 'Projects', href: '/projects' },
   { label: 'Skills', href: '/skills' },
   { label: 'Apprentissage', href: '/learning' },
-  { label: 'Experiences', href: '/experience' },
+  { label: 'About me', href: '/about' },
 ]
 
 type Lang = 'EN' | 'FR'
@@ -80,13 +80,13 @@ export function Navbar() {
             </button>
           </div>
 
-          <Link
+          {/* <Link
             href="/cv"
             className="flex items-center gap-2 text-[13px] font-kanit bg-orange text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-rust transition-colors shadow-sm"
           >
             <FileText className="w-4 h-4" />
             <span>E-CV</span>
-          </Link>
+          </Link> */}
         </div>
 
         {/* Mobile hamburger */}
@@ -146,14 +146,14 @@ export function Navbar() {
                 FR
               </button>
             </div>
-            <Link
+            {/* <Link
               href="/cv"
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-2 bg-orange text-white px-5 py-2.5 rounded-lg text-sm font-semibold font-kanit hover:bg-rust transition-colors"
             >
               <FileText className="w-4 h-4" />
               <span>E-CV</span>
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}

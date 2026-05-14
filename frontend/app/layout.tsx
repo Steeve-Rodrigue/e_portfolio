@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { QueryProvider } from '@/providers/QueryProvider'
 import { Navbar } from '@/components/layout/Navbar'
 import { ConditionalFooter } from '@/components/layout/ConditionalFooter'
+import { getProfile } from '@/lib/api'
 
 const grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -32,18 +33,20 @@ export const metadata: Metadata = {
     'Portfolio of Steeve — Data Scientist specialized in ML, analytics, and scalable data systems.',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const profile = await getProfile().catch(() => null)
+
   return (
     <html lang="en" className={cn(grotesk.variable, inter.variable, kanit.variable)}>
       <body>
         <QueryProvider>
           <Navbar />
           <main className="pt-20">{children}</main>
-          <ConditionalFooter />
+          {profile && <ConditionalFooter profile={profile} />}
         </QueryProvider>
       </body>
     </html>

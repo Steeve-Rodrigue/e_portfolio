@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import { Network } from 'lucide-react'
 import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa'
-import { getProfile } from '@/lib/api'
+import type { Profile } from '@/lib/types'
 
 const directory = [
   { label: 'Accueil', href: '/' },
   { label: 'Projets', href: '/projects' },
   { label: 'Skills', href: '/skills' },
   { label: 'Apprentissage', href: '/learning' },
-  { label: 'Expérience', href: '/experience' },
-  { label: 'E-CV', href: '/cv' },
+  { label: 'About me', href: '/about' },
+  // { label: 'E-CV', href: '/cv' },
 ]
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -23,9 +23,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   )
 }
 
-export async function Footer() {
-  const profile = await getProfile()
-
+export function Footer({ profile }: { profile: Profile }) {
   const connect = [
     profile.github_url && { label: 'GitHub', href: profile.github_url, icon: FaGithub },
     profile.linkedin_url && { label: 'LinkedIn', href: profile.linkedin_url, icon: FaLinkedinIn },
