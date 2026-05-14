@@ -115,7 +115,7 @@ jobs:
 
   fe-deploy:
     runs-on: ubuntu-latest
-    needs: [fe-lint]
+    needs: [fe-build]
     if: github.ref == 'refs/heads/main'
     environment: production
     steps:
