@@ -11,6 +11,7 @@
   metrics:
     accuracy: 0.92
     latency_ms: 45
+    ari euclidean_distance: "0.85"
   tech_stack:
     - Python
     - FastAPI
@@ -19,8 +20,9 @@
   categories:
     - NLP
   github_url: ""
-  demo_url: ""
+  demo_url: "https://github.com/Steeve-Rodrigue/"
   featured: true
+  thumbnail_url: "https://res.cloudinary.com/dp9qlaych/image/upload/v1778767907/Capture_d_%C3%A9cran_du_2026-05-14_16-10-27_plwlud.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778767906/Capture_d_%C3%A9cran_du_2026-05-14_16-10-40_wynxq1.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778767906/Capture_d_%C3%A9cran_du_2026-05-14_16-10-52_jyv9p6.png"
   display_order: 1
 
 - slug: "churn-prediction"

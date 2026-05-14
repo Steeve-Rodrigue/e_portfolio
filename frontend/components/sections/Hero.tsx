@@ -93,7 +93,7 @@ export async function Hero() {
             )}
           </h1>
           <p
-            className="text-base md:text-xl xl:text-2xl font-bold tracking-widest uppercase font-kanit"
+            className="font-kanit text-base md:text-xl xl:text-2xl font-bold tracking-widest uppercase font-kanit"
             style={{ color: '#ff6a00' }}
           >
             {title}
