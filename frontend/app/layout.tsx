@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, Inter, Work_Sans } from 'next/font/google'
+import { Space_Grotesk, Inter, Kanit } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import { QueryProvider } from '@/providers/QueryProvider'
@@ -18,7 +18,7 @@ const inter = Inter({
   weight: ['400', '500', '600', '700'],
 })
 
-const workSans = Work_Sans({
+const kanit = Kanit({
   subsets: ['latin'],
   variable: '--font-kanit',
   weight: ['400', '500', '600', '700'],
@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={cn(grotesk.variable, inter.variable, workSans.variable)}>
+    <html lang="en" className={cn(grotesk.variable, inter.variable, kanit.variable)}>
       <body>
         <QueryProvider>
           <Navbar />

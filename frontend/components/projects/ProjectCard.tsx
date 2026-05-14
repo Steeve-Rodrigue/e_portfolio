@@ -56,8 +56,8 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       >
         {project.problem_statement && (
           <p
-            className="font-grotesk text-sm md:text-base xl:text-lg leading-relaxed mb-4"
-            style={{ color: '#494551' }}
+            className=" font-grotesk text-sm md:text-base xl:text-lg leading-relaxed mb-4"
+            style={{ color: '#444444' }}
           >
             {project.problem_statement}
           </p>

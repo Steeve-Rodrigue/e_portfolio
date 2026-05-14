@@ -99,7 +99,7 @@ export async function Hero() {
             {title}
           </p>
           <p
-            className="text-sm md:text-base xl:text-lg leading-relaxed mt-2"
+            className=" font-grotesk text-sm md:text-base xl:text-lg leading-relaxed mt-2"
             style={{ color: '#444444' }}
           >
             {tagline}

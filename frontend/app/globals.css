@@ -20,7 +20,7 @@
 
   body {
     @apply bg-mint-base text-slate antialiased;
-    font-family: var(--font-vietnam), sans-serif;
+    font-family: var(--font-grotesk), sans-serif;
   }
 
   h1,
@@ -29,7 +29,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-jakarta), sans-serif;
+    font-family: var(--font-grotesk), sans-serif;
   }
 }
 
