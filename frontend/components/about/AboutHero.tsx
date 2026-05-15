@@ -23,7 +23,7 @@ export function AboutHero({ profile }: { profile: Profile }) {
             >
               {profile.name}
             </h1>
-            <p className="font-grotesk font-semibold text-xs text-[#ff6a00] uppercase tracking-widest">
+            <p className="font-grotesk font-semibold text-sm text-[#ff6a00] uppercase tracking-widest">
               {profile.title}
             </p>
           </div>
@@ -48,7 +48,7 @@ export function AboutHero({ profile }: { profile: Profile }) {
           {profile.name}
         </h1>
 
-        <p className="hidden md:block font-grotesk font-semibold text-sm md:text-base text-[#ff6a00] uppercase tracking-widest mb-4">
+        <p className="hidden md:block font-grotesk font-semibold text-sm md:text-base xl:text-lg text-[#ff6a00] uppercase tracking-widest mb-4">
           {profile.title}
         </p>
 
@@ -59,7 +59,7 @@ export function AboutHero({ profile }: { profile: Profile }) {
         )}
 
         {profile.location && (
-          <div className="flex items-center gap-1.5 font-grotesk text-xs md:text-sm text-[#7a7582] mb-6">
+          <div className="flex items-center gap-1.5 font-grotesk text-xs md:text-sm xl:text-base text-[#7a7582] mb-6">
             <MapPin className="w-3.5 h-3.5" />
             {profile.location}
           </div>
@@ -71,7 +71,7 @@ export function AboutHero({ profile }: { profile: Profile }) {
               href={profile.github_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs md:text-sm font-grotesk border border-[#ddd] text-[#494551] transition-colors hover:text-[#ff6a00] hover:border-[#ff6a00]"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs md:text-sm xl:text-base font-grotesk border border-[#ddd] text-[#494551] transition-colors hover:text-[#ff6a00] hover:border-[#ff6a00]"
             >
               <FaGithub className="w-4 h-4" />
               GitHub
@@ -82,7 +82,7 @@ export function AboutHero({ profile }: { profile: Profile }) {
               href={profile.linkedin_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs md:text-sm font-grotesk border border-[#ddd] text-[#494551] transition-colors hover:text-[#ff6a00] hover:border-[#ff6a00]"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs md:text-sm xl:text-base font-grotesk border border-[#ddd] text-[#494551] transition-colors hover:text-[#ff6a00] hover:border-[#ff6a00]"
             >
               <FaLinkedin className="w-4 h-4" />
               LinkedIn
@@ -91,7 +91,7 @@ export function AboutHero({ profile }: { profile: Profile }) {
           {profile.email && (
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs md:text-sm font-grotesk border border-[#ddd] text-[#494551] transition-colors hover:text-[#ff6a00] hover:border-[#ff6a00]"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs md:text-sm xl:text-base font-grotesk border border-[#ddd] text-[#494551] transition-colors hover:text-[#ff6a00] hover:border-[#ff6a00]"
             >
               <Mail className="w-3.5 h-3.5" />
               Email

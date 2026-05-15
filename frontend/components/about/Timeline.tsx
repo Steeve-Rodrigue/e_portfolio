@@ -68,34 +68,34 @@ function TimelineEntry({ exp, index }: { exp: Experience; index: number }) {
         )}
 
         <div className="mb-3 pr-16">
-          <div className="flex items-center gap-2 flex-wrap mb-0.5">
-            <h3 className="font-grotesk font-bold text-sm md:text-base text-[#1d1b20]">
+          <div className="flex items-center gap-2 flex-wrap mb-1">
+            <h3 className="font-grotesk font-bold text-base md:text-lg xl:text-xl text-[#1d1b20]">
               {exp.role}
             </h3>
             {exp.is_current && (
-              <span className="font-grotesk text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-[rgba(255,106,0,0.1)] text-[#ff6a00] border border-[rgba(255,106,0,0.2)]">
+              <span className="font-grotesk text-[10px] md:text-xs font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-[rgba(255,106,0,0.1)] text-[#ff6a00] border border-[rgba(255,106,0,0.2)]">
                 Actuel
               </span>
             )}
           </div>
-          <p className="font-grotesk font-semibold text-xs md:text-sm text-[#ff6a00] uppercase tracking-wider">
+          <p className="font-grotesk font-semibold text-sm md:text-base xl:text-lg text-[#ff6a00] uppercase tracking-wider">
             {exp.company}
           </p>
-          <span className="font-grotesk text-[10px] md:text-xs text-[#aaa] mt-1 block">
+          <span className="font-grotesk text-xs md:text-sm text-[#aaa] mt-1 block">
             {formatDate(exp.start_date)} —{' '}
             {exp.is_current ? 'Présent' : exp.end_date ? formatDate(exp.end_date) : ''}
           </span>
         </div>
 
         {exp.description && (
-          <p className="font-grotesk text-xs md:text-sm text-[#444444] leading-relaxed mb-3">
+          <p className="font-grotesk text-sm md:text-base xl:text-lg text-[#444444] leading-relaxed mb-3">
             {exp.description}
           </p>
         )}
 
         {exp.impact_metric && (
           <div className="inline-flex items-center px-3 py-1.5 rounded-md bg-[rgba(255,106,0,0.08)] border border-[rgba(255,106,0,0.2)]">
-            <span className="font-grotesk text-[10px] md:text-xs font-semibold text-[#ff6a00]">
+            <span className="font-grotesk text-xs md:text-sm font-semibold text-[#ff6a00]">
               {exp.impact_metric}
             </span>
           </div>
@@ -106,27 +106,6 @@ function TimelineEntry({ exp, index }: { exp: Experience; index: number }) {
 }
 
 function TimelineSection({ label, items }: { label: string; items: Experience[] }) {
-  const lineRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const line = lineRef.current
-    const container = containerRef.current
-    if (!line || !container) return
-
-    const handleScroll = () => {
-      const rect = container.getBoundingClientRect()
-      const windowH = window.innerHeight
-      const scrolled = Math.max(0, windowH - rect.top)
-      const total = rect.height + windowH
-      line.style.transform = `scaleY(${Math.min(1, scrolled / total)})`
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
   const sorted = [...items].sort(
     (a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime()
   )
@@ -145,13 +124,8 @@ function TimelineSection({ label, items }: { label: string; items: Experience[] 
         />
       </div>
 
-      <div ref={containerRef} className="relative ml-2">
+      <div className="relative ml-2">
         <div className="absolute left-0 top-0 bottom-0 w-px bg-[rgba(0,0,0,0.08)]" />
-        <div
-          ref={lineRef}
-          className="absolute left-0 top-0 bottom-0 w-px bg-[#ff6a00] origin-top"
-          style={{ transform: 'scaleY(0)' }}
-        />
         {sorted.map((exp, i) => (
           <TimelineEntry key={exp.id} exp={exp} index={i} />
         ))}
