@@ -20,6 +20,7 @@ export async function Hero() {
     linkedin_url: linkedinUrl,
     github_url: githubUrl,
   } = profile
+  const cv = profile.social_links?.cv ?? null
 
   return (
     <section
@@ -121,15 +122,18 @@ export async function Hero() {
               <FolderOpen className="w-3.5 h-3.5 md:w-4 md:h-4" />
               Voir les projets
             </Link>
-            <a
-              href="/cv.pdf"
-              download
-              className="inline-flex items-center gap-1.5 px-4 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm tracking-widest uppercase transition-colors font-grotesk hover:text-[#ff6a00] hover:border-[#ff6a00]"
-              style={{ border: '1px solid #0a0a0a', color: '#0a0a0a' }}
-            >
-              <Download className="w-3.5 h-3.5 md:w-4 md:h-4" />
-              Télécharger CV
-            </a>
+            {cv && (
+              <a
+                href={cv}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm tracking-widest uppercase transition-colors font-grotesk hover:text-[#ff6a00] hover:border-[#ff6a00]"
+                style={{ border: '1px solid #0a0a0a', color: '#0a0a0a' }}
+              >
+                <Download className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                Télécharger CV
+              </a>
+            )}
             {/* Contact links */}
             <div className="flex flex-wrap items-center gap-3 mt-2 py-b-6">
               <span className="text-xs font-grotesk" style={{ color: '#888888' }}>
