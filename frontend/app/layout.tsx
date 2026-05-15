@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { QueryProvider } from '@/providers/QueryProvider'
 import { Navbar } from '@/components/layout/Navbar'
 import { ConditionalFooter } from '@/components/layout/ConditionalFooter'
+import { VisitorTracker } from '@/components/layout/VisitorTracker'
 import { getProfile } from '@/lib/api'
 
 const grotesk = Space_Grotesk({
@@ -44,6 +45,7 @@ export default async function RootLayout({
     <html lang="en" className={cn(grotesk.variable, inter.variable, kanit.variable)}>
       <body>
         <QueryProvider>
+          <VisitorTracker />
           <Navbar />
           <main className="pt-20">{children}</main>
           {profile && <ConditionalFooter profile={profile} />}
