@@ -31,9 +31,40 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] flex">
-      {/* Sidebar */}
-      <aside className="w-56 shrink-0 border-r border-white/10 flex flex-col py-8 px-4">
+    <div className="min-h-screen bg-[#0f0f0f] flex flex-col md:flex-row">
+      {/* Mobile top bar */}
+      <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-white/10">
+        <div className="flex items-center gap-2">
+          <Network className="w-5 h-5 text-[#ff6a00]" strokeWidth={2} />
+          <span className="font-grotesk font-bold text-white tracking-tight">Admin</span>
+        </div>
+        <div className="flex items-center gap-2">
+          {navItems.map(({ label, href, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className={cn(
+                'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-grotesk font-medium transition-colors',
+                pathname === href
+                  ? 'bg-[#ff6a00]/10 text-[#ff6a00]'
+                  : 'text-white/50 hover:text-white hover:bg-white/5'
+              )}
+            >
+              <Icon className="w-3.5 h-3.5" />
+              {label}
+            </Link>
+          ))}
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-grotesk font-medium text-white/30 hover:text-red-400 hover:bg-white/5 transition-colors"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Desktop sidebar */}
+      <aside className="hidden md:flex w-56 shrink-0 border-r border-white/10 flex-col py-8 px-4">
         <div className="flex items-center gap-2 mb-10 px-2">
           <Network className="w-5 h-5 text-[#ff6a00]" strokeWidth={2} />
           <span className="font-grotesk font-bold text-white tracking-tight">Admin</span>
@@ -67,7 +98,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto p-8">{children}</main>
+      <main className="flex-1 overflow-auto p-4 md:p-8">{children}</main>
     </div>
   )
 }
