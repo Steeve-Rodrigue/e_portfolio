@@ -21,6 +21,7 @@ export function VisitorTracker() {
   const pathname = usePathname()
 
   useEffect(() => {
+    if (pathname.startsWith('/admin')) return
     trackVisit({
       page: pathname,
       referrer: document.referrer || null,

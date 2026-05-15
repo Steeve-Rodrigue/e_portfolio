@@ -7,9 +7,14 @@ export default function Scene() {
   return (
     <Canvas
       camera={{ position: [-5, 0, 22], fov: 60 }}
-      dpr={[1, 2]}
-      gl={{ alpha: true }}
+      dpr={[1, 1.5]}
+      gl={{ alpha: true, powerPreference: 'low-power' }}
       style={{ width: '100%', height: '100%' }}
+      onCreated={({ gl }) => {
+        gl.domElement.addEventListener('webglcontextlost', (e) => {
+          e.preventDefault()
+        })
+      }}
     >
       <Network />
       <EffectComposer>

@@ -58,8 +58,7 @@ export const login = (email: string, password: string) =>
 // --- Admin (JWT injected automatically by axios interceptor) ---
 export const getMessages = () => apiClient.get<Message[]>('/api/v1/messages').then((r) => r.data)
 
-export const getAnalytics = () =>
-  apiClient.get<Analytics>('/api/v1/admin/analytics').then((r) => r.data)
+export const getAnalytics = () => apiClient.get<Analytics>('/api/v1/visitors').then((r) => r.data)
 
 export const markRead = (id: string) =>
   apiClient.patch(`/api/v1/messages/${id}/read`).then((r) => r.data)
