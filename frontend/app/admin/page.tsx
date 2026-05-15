@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Users, TrendingUp, Globe, Monitor, Smartphone } from 'lucide-react'
+import { Users, Globe, Monitor, Smartphone } from 'lucide-react'
 import { getAnalytics } from '@/lib/api'
 import type { Analytics } from '@/lib/types'
 
@@ -89,9 +89,8 @@ export default function AdminAnalyticsPage() {
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <StatCard label="Visites totales" value={analytics.total} icon={Users} />
-        <StatCard label="Pages vues" value={analytics.by_page.length} icon={TrendingUp} />
         <StatCard label="Sources" value={analytics.top_referrers.length} icon={Globe} />
       </div>
 
