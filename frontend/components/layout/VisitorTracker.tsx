@@ -22,6 +22,7 @@ export function VisitorTracker() {
 
   useEffect(() => {
     if (pathname.startsWith('/admin')) return
+    if (localStorage.getItem('admin_token')) return
     trackVisit({
       page: pathname,
       referrer: document.referrer || null,
