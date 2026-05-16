@@ -1,14 +1,18 @@
+'use client'
+
+import { useLang } from '@/lib/language-context'
+
 export function SkillsHero() {
+  const { t } = useLang()
   return (
     <section style={{ marginBottom: '1.5rem' }}>
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-        {/* Left — title */}
         <div>
           <p
             className="font-grotesk text-xs md:text-sm font-bold tracking-widest uppercase mb-3"
             style={{ color: '#ff6a00' }}
           >
-            Profil technique
+            {t('skills.profil_technique')}
           </p>
           <h1
             className="font-grotesk font-extrabold uppercase text-4xl md:text-6xl xl:text-[62px]"

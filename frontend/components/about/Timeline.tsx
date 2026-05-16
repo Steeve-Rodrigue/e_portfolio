@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import { Briefcase, GraduationCap } from 'lucide-react'
+import { useLang } from '@/lib/language-context'
 import type { Experience } from '@/lib/types'
 
 function formatDate(dateStr: string) {
@@ -10,6 +11,7 @@ function formatDate(dateStr: string) {
 }
 
 function TimelineEntry({ exp, index }: { exp: Experience; index: number }) {
+  const { t } = useLang()
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -74,7 +76,7 @@ function TimelineEntry({ exp, index }: { exp: Experience; index: number }) {
             </h3>
             {exp.is_current && (
               <span className="font-grotesk text-[10px] md:text-xs font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-[rgba(255,106,0,0.1)] text-[#ff6a00] border border-[rgba(255,106,0,0.2)]">
-                Actuel
+                {t('about.current')}
               </span>
             )}
           </div>
@@ -83,7 +85,7 @@ function TimelineEntry({ exp, index }: { exp: Experience; index: number }) {
           </p>
           <span className="font-grotesk text-xs md:text-sm text-[#aaa] mt-1 block">
             {formatDate(exp.start_date)} —{' '}
-            {exp.is_current ? 'Présent' : exp.end_date ? formatDate(exp.end_date) : ''}
+            {exp.is_current ? t('about.present') : exp.end_date ? formatDate(exp.end_date) : ''}
           </span>
         </div>
 
@@ -135,13 +137,14 @@ function TimelineSection({ label, items }: { label: string; items: Experience[] 
 }
 
 export function Timeline({ experiences }: { experiences: Experience[] }) {
+  const { t } = useLang()
   const education = experiences.filter((e) => e.type === 'education')
   const jobs = experiences.filter((e) => e.type === 'job')
 
   return (
     <div>
-      <TimelineSection label="Education" items={education} />
-      <TimelineSection label="Expériences" items={jobs} />
+      <TimelineSection label={t('about.education')} items={education} />
+      <TimelineSection label={t('about.experience')} items={jobs} />
     </div>
   )
 }

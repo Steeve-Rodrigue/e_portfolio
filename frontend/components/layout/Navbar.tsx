@@ -5,21 +5,20 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { Menu, X, Network } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-const navLinks = [
-  { label: 'Accueil', href: '/' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Skills', href: '/skills' },
-  { label: 'Apprentissage', href: '/learning' },
-  { label: 'About me', href: '/about' },
-]
-
-type Lang = 'EN' | 'FR'
+import { useLang } from '@/lib/language-context'
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [lang, setLang] = useState<Lang>('FR')
+  const { lang, setLang, t } = useLang()
   const pathname = usePathname()
+
+  const navLinks = [
+    { label: t('nav.home'), href: '/' },
+    { label: t('nav.projects'), href: '/projects' },
+    { label: t('nav.skills'), href: '/skills' },
+    { label: t('nav.learning'), href: '/learning' },
+    { label: t('nav.about'), href: '/about' },
+  ]
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
@@ -61,19 +60,19 @@ export function Navbar() {
           {/* Language toggle pill */}
           <div className="flex items-center bg-gray-100 rounded-full px-1 py-1 gap-0.5 text-[12px] font-semibold font-kanit">
             <button
-              onClick={() => setLang('EN')}
+              onClick={() => setLang('en')}
               className={cn(
                 'px-3 py-1 rounded-full transition-all',
-                lang === 'EN' ? 'bg-orange text-white shadow-sm' : 'text-slate/50 hover:text-slate'
+                lang === 'en' ? 'bg-orange text-white shadow-sm' : 'text-slate/50 hover:text-slate'
               )}
             >
               EN
             </button>
             <button
-              onClick={() => setLang('FR')}
+              onClick={() => setLang('fr')}
               className={cn(
                 'px-3 py-1 rounded-full transition-all',
-                lang === 'FR' ? 'bg-orange text-white shadow-sm' : 'text-slate/50 hover:text-slate'
+                lang === 'fr' ? 'bg-orange text-white shadow-sm' : 'text-slate/50 hover:text-slate'
               )}
             >
               FR
@@ -124,10 +123,10 @@ export function Navbar() {
           <div className="flex items-center gap-4 pt-4 mt-2 border-t border-gray-100">
             <div className="flex items-center bg-gray-100 rounded-full px-1 py-1 gap-0.5 text-[12px] font-semibold font-kanit">
               <button
-                onClick={() => setLang('EN')}
+                onClick={() => setLang('en')}
                 className={cn(
                   'px-3 py-1 rounded-full transition-all',
-                  lang === 'EN'
+                  lang === 'en'
                     ? 'bg-orange text-white shadow-sm'
                     : 'text-slate/50 hover:text-slate'
                 )}
@@ -135,10 +134,10 @@ export function Navbar() {
                 EN
               </button>
               <button
-                onClick={() => setLang('FR')}
+                onClick={() => setLang('fr')}
                 className={cn(
                   'px-3 py-1 rounded-full transition-all',
-                  lang === 'FR'
+                  lang === 'fr'
                     ? 'bg-orange text-white shadow-sm'
                     : 'text-slate/50 hover:text-slate'
                 )}

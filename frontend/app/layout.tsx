@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter, Kanit } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import { QueryProvider } from '@/providers/QueryProvider'
+import { LanguageProvider } from '@/lib/language-context'
 import { Navbar } from '@/components/layout/Navbar'
 import { ConditionalFooter } from '@/components/layout/ConditionalFooter'
 import { VisitorTracker } from '@/components/layout/VisitorTracker'
@@ -45,10 +46,12 @@ export default async function RootLayout({
     <html lang="en" className={cn(grotesk.variable, inter.variable, kanit.variable)}>
       <body>
         <QueryProvider>
-          <VisitorTracker />
-          <Navbar />
-          <main className="pt-20">{children}</main>
-          {profile && <ConditionalFooter profile={profile} />}
+          <LanguageProvider>
+            <VisitorTracker />
+            <Navbar />
+            <main className="pt-20">{children}</main>
+            {profile && <ConditionalFooter profile={profile} />}
+          </LanguageProvider>
         </QueryProvider>
       </body>
     </html>

@@ -1,4 +1,7 @@
+'use client'
+
 import { ExternalLink } from 'lucide-react'
+import { useLang } from '@/lib/language-context'
 import type { LearningItem } from '@/lib/types'
 
 function SectionDivider({ label }: { label: string }) {
@@ -81,11 +84,17 @@ function ItemRow({ item }: { item: LearningItem }) {
   )
 }
 
-const GROUPS: { type: LearningItem['type']; label: string; description: string }[] = [
-  { type: 'current', label: 'Studies', description: 'Formations et apprentissages en cours.' },
-  { type: 'course', label: 'Completed', description: 'Cours et formations complétés.' },
-  { type: 'paper', label: 'Papers', description: 'Articles de recherche lus et étudiés.' },
-  { type: 'competition', label: 'Compétitions', description: 'Compétitions Kaggle et hackathons.' },
+type GroupDef = { type: LearningItem['type']; labelKey: string; descKey: string }
+
+const GROUPS: GroupDef[] = [
+  { type: 'current', labelKey: 'learning.studies_label', descKey: 'learning.studies_desc' },
+  { type: 'course', labelKey: 'learning.completed_label', descKey: 'learning.completed_desc' },
+  { type: 'paper', labelKey: 'learning.papers_label', descKey: 'learning.papers_desc' },
+  {
+    type: 'competition',
+    labelKey: 'learning.competitions_label',
+    descKey: 'learning.competitions_desc',
+  },
 ]
 
 export function LearningList({
@@ -97,23 +106,24 @@ export function LearningList({
   only?: LearningItem['type'][]
   exclude?: LearningItem['type'][]
 }) {
+  const { t } = useLang()
+
   const groups = only ? GROUPS.filter((g) => only.includes(g.type)) : GROUPS
   const filtered = exclude ? groups.filter((g) => !exclude.includes(g.type)) : groups
   const grouped = filtered
-    .map((g) => ({
-      ...g,
-      items: items.filter((i) => i.type === g.type),
-    }))
+    .map((g) => ({ ...g, items: items.filter((i) => i.type === g.type) }))
     .filter((g) => g.items.length > 0)
 
   if (grouped.length === 0) return null
 
   return (
     <div className="flex flex-col gap-10">
-      {grouped.map(({ type, label, description, items: groupItems }) => (
+      {grouped.map(({ type, labelKey, descKey, items: groupItems }) => (
         <section key={type}>
-          <SectionDivider label={label} />
-          <p className="font-grotesk text-xs md:text-sm text-[#7a7582] mb-4">{description}</p>
+          <SectionDivider label={t(labelKey as Parameters<typeof t>[0])} />
+          <p className="font-grotesk text-xs md:text-sm text-[#7a7582] mb-4">
+            {t(descKey as Parameters<typeof t>[0])}
+          </p>
           <div
             className="rounded-[14px] px-4 py-2 bg-white/75 border border-[rgba(255,106,0,0.12)]"
             style={{
