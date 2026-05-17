@@ -60,5 +60,7 @@ export const getMessages = () => apiClient.get<Message[]>('/api/v1/messages').th
 
 export const getAnalytics = () => apiClient.get<Analytics>('/api/v1/visitors').then((r) => r.data)
 
+export const resetAnalytics = () => apiClient.delete('/api/v1/visitors').then((r) => r.data)
+
 export const markRead = (id: string) =>
   apiClient.patch(`/api/v1/messages/${id}/read`).then((r) => r.data)

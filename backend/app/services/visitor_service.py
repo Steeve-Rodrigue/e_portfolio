@@ -59,3 +59,9 @@ async def get_analytics(pool: asyncpg.Pool) -> dict:
         "top_referrers": [dict(r) for r in top_referrers],
         "recent": [dict(r) for r in recent],
     }
+
+
+async def reset_analytics(pool: asyncpg.Pool) -> int:
+    async with pool.acquire() as conn:
+        result = await conn.execute("DELETE FROM visitors")
+    return int(result.split()[-1])

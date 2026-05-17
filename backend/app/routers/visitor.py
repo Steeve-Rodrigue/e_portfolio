@@ -20,3 +20,10 @@ async def track_visit(request: Request, data: VisitorCreate):
 async def get_analytics(_: str = Depends(require_admin)):
     pool = await get_pool()
     return await visitor_service.get_analytics(pool)
+
+
+@router.delete("", status_code=200)
+async def reset_analytics(_: str = Depends(require_admin)):
+    pool = await get_pool()
+    deleted = await visitor_service.reset_analytics(pool)
+    return {"deleted": deleted}

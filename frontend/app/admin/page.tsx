@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Users, Globe, Monitor, Smartphone } from 'lucide-react'
-import { getAnalytics } from '@/lib/api'
+import { Users, Globe, Monitor, Smartphone, Trash2 } from 'lucide-react'
+import { getAnalytics, resetAnalytics } from '@/lib/api'
 import type { Analytics } from '@/lib/types'
 
 function StatCard({
@@ -54,12 +54,32 @@ function formatDate(dateStr: string) {
 export default function AdminAnalyticsPage() {
   const [analytics, setAnalytics] = useState<Analytics | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [resetting, setResetting] = useState(false)
 
-  useEffect(() => {
+  function load() {
+    setAnalytics(null)
     getAnalytics()
       .then(setAnalytics)
       .catch((err) => setError(err.message))
+  }
+
+  useEffect(() => {
+    load()
   }, [])
+
+  async function handleReset() {
+    if (!window.confirm('Supprimer toutes les données analytics ? Cette action est irréversible.'))
+      return
+    setResetting(true)
+    try {
+      await resetAnalytics()
+      load()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Erreur lors du reset')
+    } finally {
+      setResetting(false)
+    }
+  }
 
   if (error) {
     return (
@@ -83,9 +103,19 @@ export default function AdminAnalyticsPage() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="font-grotesk font-bold text-xl text-white mb-1">Analytics</h1>
-        <p className="font-grotesk text-sm text-white/30">Activité des visiteurs</p>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <h1 className="font-grotesk font-bold text-xl text-white mb-1">Analytics</h1>
+          <p className="font-grotesk text-sm text-white/30">Activité des visiteurs</p>
+        </div>
+        <button
+          onClick={handleReset}
+          disabled={resetting}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-grotesk text-xs tracking-widest uppercase transition-colors border border-red-500/40 text-red-400 hover:bg-red-500/10 disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          <Trash2 className="w-3.5 h-3.5" />
+          {resetting ? 'Reset...' : 'Reset'}
+        </button>
       </div>
 
       {/* Stats row */}
