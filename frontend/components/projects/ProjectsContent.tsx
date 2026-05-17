@@ -10,10 +10,7 @@ const FIELDS = ['title', 'problem_statement', 'methodology', 'results_impact'] a
 
 export function ProjectsContent({ projects }: { projects: Project[] }) {
   const { t } = useLang()
-  const translated = useTranslateArray(
-    projects as unknown as Record<string, unknown>[],
-    FIELDS as unknown as string[]
-  ) as unknown as Project[]
+  const translated = useTranslateArray(projects, [...FIELDS])
 
   const featured = projects.filter((p) => p.featured).length
 

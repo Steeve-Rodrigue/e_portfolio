@@ -1,3 +1,6 @@
+'use client'
+
+import { useLang } from '@/lib/language-context'
 import type { Skill } from '@/lib/types'
 import { SkillItem } from './SkillItem'
 
@@ -10,6 +13,7 @@ export function ClusterSection({
   skills: Skill[]
   index: number
 }) {
+  const { t } = useLang()
   const sorted = [...skills].sort((a, b) => a.display_order - b.display_order)
   const num = String(index + 1).padStart(2, '0')
   const categories = Array.from(new Set(skills.map((s) => s.category))).join(' · ')
@@ -39,12 +43,12 @@ export function ClusterSection({
               className="font-grotesk text-xs md:text-sm"
               style={{ color: '#aaa', letterSpacing: '0.08em' }}
             >
-              {sorted.length} compétences
+              {sorted.length} {t('skills.count_label')}
             </span>
           </div>
           {categories && (
             <p
-              className=" text-sm md:text-base  xl:text-lg"
+              className="text-sm md:text-base xl:text-lg"
               style={{ color: '#1d1b20', letterSpacing: '0.04em' }}
             >
               {categories}

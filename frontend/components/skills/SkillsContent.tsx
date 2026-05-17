@@ -1,15 +1,17 @@
 'use client'
 
 import { useLang } from '@/lib/language-context'
+import { useTranslateArray } from '@/lib/use-translate'
 import { SkillsHero } from '@/components/skills/SkillsHero'
 import { ClusterSection } from '@/components/skills/ClusterSection'
 import type { Skill } from '@/lib/types'
 
 export function SkillsContent({ skills }: { skills: Skill[] }) {
   const { t } = useLang()
+  const translated = useTranslateArray(skills, ['category'])
 
-  const clusters = Array.from(new Set(skills.map((s) => s.cluster)))
-  const byCluster = (cluster: string) => skills.filter((s) => s.cluster === cluster)
+  const clusters = Array.from(new Set(translated.map((s) => s.cluster)))
+  const byCluster = (cluster: string) => translated.filter((s) => s.cluster === cluster)
 
   return (
     <>

@@ -12,14 +12,12 @@ import type { Profile } from '@/lib/types'
 const FIELDS = ['title', 'tagline', 'availability_status'] as const
 
 export function HeroClient({ profile }: { profile: Profile }) {
-  const { t } = useLang()
-  const p = useTranslateFields(
-    profile as Record<string, unknown>,
-    FIELDS as unknown as string[]
-  ) as unknown as Profile
+  const { t, lang } = useLang()
+  const p = useTranslateFields(profile, [...FIELDS])
 
   const { firstNames, surname } = splitName(p.name)
-  const cv = p.social_links?.cv ?? null
+  const cvUrls = (p.social_links?.cv ?? '').split(',').map((s) => s.trim())
+  const cv = lang === 'en' ? cvUrls[1] || cvUrls[0] || null : cvUrls[0] || null
 
   return (
     <div

@@ -26,10 +26,7 @@ function SectionDivider({ label }: { label: string }) {
 
 export function ProjectDetailContent({ project }: { project: Project }) {
   const { t } = useLang()
-  const p = useTranslateFields(
-    project as Record<string, unknown>,
-    FIELDS as unknown as string[]
-  ) as unknown as Project
+  const p = useTranslateFields(project, [...FIELDS])
 
   return (
     <main

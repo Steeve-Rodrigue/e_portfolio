@@ -18,10 +18,7 @@ export function LearningContent({
 }) {
   const { t } = useLang()
 
-  const translatedItems = useTranslateArray(
-    learningItems as unknown as Record<string, unknown>[],
-    ITEM_FIELDS as unknown as string[]
-  ) as unknown as LearningItem[]
+  const translatedItems = useTranslateArray(learningItems, [...ITEM_FIELDS])
 
   return (
     <>

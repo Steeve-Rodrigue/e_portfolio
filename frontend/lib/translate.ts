@@ -39,27 +39,30 @@ async function resolveTexts(texts: string[], lang: 'fr' | 'en'): Promise<string[
   return texts.map((text) => (text ? (cache.get(cacheKey(text, lang)) ?? text) : text))
 }
 
-export async function translateFields<T extends Record<string, unknown>>(
+export async function translateFields<T extends object>(
   obj: T,
-  fields: (keyof T)[],
+  fields: (keyof T & string)[],
   lang: 'fr' | 'en'
 ): Promise<T> {
   if (lang === 'fr') return obj
 
-  const stringFields = fields.filter((f) => typeof obj[f] === 'string' && obj[f])
-  const texts = stringFields.map((f) => obj[f] as string)
+  const stringFields = fields.filter((f) => {
+    const v = obj[f as keyof T]
+    return typeof v === 'string' && v
+  })
+  const texts = stringFields.map((f) => obj[f as keyof T] as unknown as string)
   const translated = await resolveTexts(texts, lang)
 
   const result = { ...obj }
   stringFields.forEach((f, i) => {
-    result[f] = translated[i] as T[keyof T]
+    ;(result as Record<string, unknown>)[f] = translated[i]
   })
   return result
 }
 
-export async function translateArray<T extends Record<string, unknown>>(
+export async function translateArray<T extends object>(
   items: T[],
-  fields: (keyof T)[],
+  fields: (keyof T & string)[],
   lang: 'fr' | 'en'
 ): Promise<T[]> {
   if (lang === 'fr') return items
@@ -69,9 +72,10 @@ export async function translateArray<T extends Record<string, unknown>>(
 
   items.forEach((item, itemIdx) => {
     fields.forEach((f, fieldIdx) => {
-      if (typeof item[f] === 'string' && item[f]) {
+      const v = item[f as keyof T]
+      if (typeof v === 'string' && v) {
         map.push({ itemIdx, fieldIdx, textIdx: allTexts.length })
-        allTexts.push(item[f] as string)
+        allTexts.push(v)
       }
     })
   })
@@ -80,7 +84,7 @@ export async function translateArray<T extends Record<string, unknown>>(
 
   const results = items.map((item) => ({ ...item }))
   map.forEach(({ itemIdx, fieldIdx, textIdx }) => {
-    results[itemIdx][fields[fieldIdx]] = translated[textIdx] as T[keyof T]
+    ;(results[itemIdx] as Record<string, unknown>)[fields[fieldIdx]] = translated[textIdx]
   })
   return results
 }

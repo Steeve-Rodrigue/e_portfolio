@@ -34,15 +34,8 @@ export function AboutContent({
 }) {
   const { t } = useLang()
 
-  const translatedProfile = useTranslateFields(
-    profile as Record<string, unknown>,
-    PROFILE_FIELDS as unknown as string[]
-  ) as unknown as Profile
-
-  const translatedExperiences = useTranslateArray(
-    experiences as unknown as Record<string, unknown>[],
-    EXP_FIELDS as unknown as string[]
-  ) as unknown as Experience[]
+  const translatedProfile = useTranslateFields(profile, [...PROFILE_FIELDS])
+  const translatedExperiences = useTranslateArray(experiences, [...EXP_FIELDS])
 
   return (
     <>

@@ -1,9 +1,13 @@
+'use client'
+
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import { ExternalLink, BookOpen, ArrowRight } from 'lucide-react'
+import { useLang } from '@/lib/language-context'
 import type { Project } from '@/lib/types'
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { t } = useLang()
   const num = String(index + 1).padStart(2, '0')
 
   return (
@@ -123,7 +127,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             className="inline-flex items-center  px-6 py-1 rounded-full text-xs md:text-[12px] font-grotesk tracking-widest text-white transition-opacity hover:opacity-90"
             style={{ background: '#4e4d4b' }}
           >
-            Voir
+            {t('projects.view')}
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>

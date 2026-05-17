@@ -12,10 +12,7 @@ const PROFILE_FIELDS = ['title', 'tagline'] as const
 export function Footer({ profile }: { profile: Profile }) {
   const { t } = useLang()
 
-  const p = useTranslateFields(
-    profile as Record<string, unknown>,
-    PROFILE_FIELDS as unknown as string[]
-  ) as unknown as Profile
+  const p = useTranslateFields(profile, [...PROFILE_FIELDS])
 
   const directory = [
     { label: t('nav.home'), href: '/' },
