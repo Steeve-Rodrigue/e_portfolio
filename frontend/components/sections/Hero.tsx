@@ -1,5 +1,5 @@
 import NeuralNetwork from '@/components/NeuralNetwork'
-import { getProfile } from '@/lib/api'
+import { getProfile } from '@/lib/server-api'
 import { HeroClient } from '@/components/sections/HeroClient'
 
 export async function Hero() {

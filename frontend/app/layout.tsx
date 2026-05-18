@@ -7,7 +7,7 @@ import { LanguageProvider } from '@/lib/language-context'
 import { Navbar } from '@/components/layout/Navbar'
 import { ConditionalFooter } from '@/components/layout/ConditionalFooter'
 import { VisitorTracker } from '@/components/layout/VisitorTracker'
-import { getProfile } from '@/lib/api'
+import { getProfile } from '@/lib/server-api'
 
 const grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -26,8 +26,6 @@ const kanit = Kanit({
   variable: '--font-kanit',
   weight: ['400', '500', '600', '700'],
 })
-
-export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Steeve | Data Scientist',

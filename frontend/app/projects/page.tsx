@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getProjects } from '@/lib/api'
+import { getProjects } from '@/lib/server-api'
 import { ProjectsContent } from '@/components/projects/ProjectsContent'
 
 export const metadata: Metadata = {

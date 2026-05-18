@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getProject } from '@/lib/api'
+import { getProject } from '@/lib/server-api'
 import { ProjectDetailContent } from '@/components/projects/ProjectDetailContent'
 
 interface Props {

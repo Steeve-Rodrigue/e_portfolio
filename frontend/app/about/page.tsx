@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getProfile, getExperience } from '@/lib/api'
+import { getProfile, getExperience } from '@/lib/server-api'
 import { AboutContent } from '@/components/about/AboutContent'
 
 export const metadata: Metadata = {
