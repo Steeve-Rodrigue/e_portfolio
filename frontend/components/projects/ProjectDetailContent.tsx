@@ -53,7 +53,7 @@ export function ProjectDetailContent({ project }: { project: Project }) {
           ))}
           {project.featured && (
             <span className="font-grotesk text-xs md:text-sm font-bold text-[#ff6a00]">
-              ★ Featured
+              ★ Fait en groupe
             </span>
           )}
           {project.has_ml_demo && (
@@ -108,7 +108,7 @@ export function ProjectDetailContent({ project }: { project: Project }) {
         {p.problem_statement && (
           <section className="mb-12">
             <SectionDivider label={t('slug.problem')} />
-            <p className="text-[14px] md:text-base xl:text-lg leading-relaxed text-black">
+            <p className="text-[14px] md:text-base xl:text-lg leading-relaxed text-black whitespace-pre-wrap">
               {p.problem_statement}
             </p>
           </section>
@@ -116,8 +116,8 @@ export function ProjectDetailContent({ project }: { project: Project }) {
 
         {p.methodology && (
           <section className="mb-12">
-            <SectionDivider label={t('slug.methodology')} />
-            <p className="text-sm md:text-base xl:text-lg leading-relaxed text-black">
+            <SectionDivider label={t('slug.presentation')} />
+            <p className="text-sm md:text-base xl:text-lg leading-relaxed text-black whitespace-pre-wrap">
               {p.methodology}
             </p>
           </section>
@@ -126,7 +126,7 @@ export function ProjectDetailContent({ project }: { project: Project }) {
         {p.results_impact && (
           <section className="mb-12">
             <SectionDivider label={t('slug.results')} />
-            <p className="text-sm md:text-base xl:text-lg leading-relaxed text-black">
+            <p className="text-sm md:text-base xl:text-lg leading-relaxed text-black whitespace-pre-wrap">
               {p.results_impact}
             </p>
           </section>

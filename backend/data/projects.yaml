@@ -1,284 +1,204 @@
-- slug: "sentiment-analysis-api"
-  title: "API d'Analyse de Sentiment"
+- slug: "jobpilot"
+  title: "JobPilot — Application de Recherche d'Emploi"
   problem_statement: |
-    Construire une API REST prête pour la production qui classifie le sentiment
-    d'un texte (positif, négatif, neutre) avec une latence inférieure à 100ms.
-  methodology: |
-    Fine-tuning d'un modèle DistilBERT sur le dataset SST-2.
-    Servi via FastAPI avec mise en cache du modèle et inférence par batch.
+    Les chercheurs d'emploi dans le domaine data/IA perdent un temps considérable
+    à parcourir manuellement des centaines d'offres dispersées. JobPilot centralise
+    les offres France Travail et permet de les explorer et filtrer par métier,
+    localisation et type de contrat — le tout depuis un profil professionnel unique.
+  Presentation: |
+    Agrégation automatique des offres via l'API France Travail au démarrage.
+    Interface de recherche et de filtrage multi-critères (métier, localisation,
+    contrat) couplée à un système de profil utilisateur avec gestion des compétences.
   results_impact: |
-    92% de précision sur le jeu de test avec une latence moyenne de 45ms.
+    Application déployée sur SSPCloud.
+    Agrégation de plusieurs centaines d'offres data/IA en temps réel.
   metrics:
-    accuracy: 0.92
-    latency_ms: 45
+    offres_agregees: 2000+
+    temps_de_chargement_ms: 200
   tech_stack:
     - Python
     - FastAPI
-    - HuggingFace Transformers
-    - Docker
-  categories:
-    - NLP
-  github_url: ""
-  demo_url: "https://github.com/Steeve-Rodrigue/"
-  featured: true
-  thumbnail_url: "https://res.cloudinary.com/dp9qlaych/image/upload/v1778767907/Capture_d_%C3%A9cran_du_2026-05-14_16-10-27_plwlud.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778767906/Capture_d_%C3%A9cran_du_2026-05-14_16-10-40_wynxq1.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778767906/Capture_d_%C3%A9cran_du_2026-05-14_16-10-52_jyv9p6.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778791778/Capture_d_%C3%A9cran_du_2026-05-14_22-44-21_zw5dkz.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778791779/Capture_d_%C3%A9cran_du_2026-05-14_22-47-00_ydch2u.png"
-  display_order: 1
-
-- slug: "churn-prediction"
-  title: "Prédiction du Taux d'Attrition Client"
-  problem_statement: |
-    Prédire quels clients télécom sont susceptibles de se désabonner
-    dans les 30 prochains jours pour des campagnes de rétention proactives.
-  methodology: |
-    Entraînement d'un classifieur XGBoost sur 3 ans de données comportementales.
-    Feature engineering incluant des variables de récence, fréquence et montant.
-  results_impact: |
-    Réduction du taux d'attrition de 18% en test A/B.
-    Modèle déployé en batch hebdomadaire.
-  metrics:
-    auc_roc: 0.89
-    precision: 0.81
-    recall: 0.76
-  tech_stack:
-    - Python
-    - XGBoost
-    - scikit-learn
-    - Pandas
-  categories:
-    - Classification
-  github_url: ""
-  demo_url: ""
-  featured: true
-  display_order: 2
-
-- slug: "real-time-fraud-detection"
-  title: "Détection de Fraude en Temps Réel"
-  problem_statement: |
-    Détecter les transactions frauduleuses par carte bancaire en temps réel
-    avec un minimum de faux positifs pour ne pas bloquer les utilisateurs légitimes.
-  methodology: |
-    Modèle ensemble combinant Isolation Forest et LightGBM.
-    Déployé sur un flux Kafka avec une inférence inférieure à 50ms par transaction.
-  results_impact: |
-    94% des fraudes détectées avec un taux de faux positifs inférieur à 0.3%.
-    Traitement de 10 000 transactions par seconde en production.
-  metrics:
-    recall: 0.94
-    false_positive_rate: 0.003
-    latency_ms: 38
-  tech_stack:
-    - Python
-    - Kafka
-    - LightGBM
-    - FastAPI
-    - Docker
-  categories:
-    - Classification
-  github_url: ""
-  demo_url: ""
-  featured: true
-  display_order: 3
-
-- slug: "llm-document-qa"
-  title: "Système Q&R sur Documents via LLM"
-  problem_statement: |
-    Permettre à des utilisateurs non techniques d'interroger de grands
-    documents PDF internes en langage naturel sans recherche manuelle.
-  methodology: |
-    Pipeline RAG construit avec LangChain, un vector store FAISS
-    et un modèle Mistral-7B fine-tuné comme générateur.
-    Documents découpés et embarqués avec sentence-transformers.
-  results_impact: |
-    Réduction du temps de recherche documentaire de 70%.
-    Déployé pour une équipe de 50 analystes avec 89% de satisfaction.
-  metrics:
-    answer_relevance: 0.89
-    retrieval_accuracy: 0.91
-  tech_stack:
-    - Python
-    - LangChain
-    - FAISS
-    - HuggingFace
-    - FastAPI
-  categories:
-    - NLP
-    - LLM
-  github_url: ""
-  demo_url: ""
-  featured: true
-  display_order: 4
-
-- slug: "energy-consumption-forecast"
-  title: "Prévision de Consommation Énergétique"
-  problem_statement: |
-    Prévoir la consommation horaire d'électricité pour un opérateur
-    de réseau régional afin d'optimiser les achats et réduire les coûts.
-  methodology: |
-    Combinaison d'un modèle Prophet comme baseline et d'un LSTM
-    pour la correction des résidus. Variables externes incluant météo,
-    jours fériés et indicateurs économiques.
-  results_impact: |
-    MAPE de 2.3% sur des prévisions à 48 heures.
-    Économies annuelles estimées à 1.2M€ sur les achats d'énergie.
-  metrics:
-    mape: 0.023
-    rmse: 142.5
-  tech_stack:
-    - Python
-    - PyTorch
-    - Prophet
-    - Pandas
-    - Airflow
-  categories:
-    - Séries Temporelles
-    - Prévision
-  github_url: ""
-  demo_url: ""
-  featured: false
-  display_order: 5
-
-- slug: "mlops-pipeline"
-  title: "Pipeline MLOps de Bout en Bout"
-  problem_statement: |
-    Construire un pipeline ML entièrement automatisé gérant l'ingestion
-    des données, l'entraînement, l'évaluation, le versioning et le déploiement
-    sans aucune intervention manuelle.
-  methodology: |
-    Orchestration avec Airflow, versioning des modèles via MLflow,
-    conteneurisation Docker et déploiement sur Kubernetes.
-    Réentraînement automatique déclenché par détection de data drift.
-  results_impact: |
-    Temps de déploiement réduit de 2 semaines à 4 heures.
-    Déploiements sans interruption avec rollback automatique en cas de régression.
-  metrics:
-    deployment_time_hours: 4
-    uptime: 0.999
-  tech_stack:
-    - Python
-    - Airflow
-    - MLflow
+    - React
+    - Vite
+    - TailwindCSS
+    - PostgreSQL
     - Docker
     - Kubernetes
-    - GitHub Actions
+    - France Travail API
   categories:
-    - MLOps
-    - Infrastructure
+    - Full Stack Engineering
   github_url: ""
   demo_url: ""
   featured: true
-  display_order: 6
+  thumbnail_url: "https://res.cloudinary.com/dp9qlaych/image/upload/v1778767907/Capture_d_%C3%A9cran_du_2026-05-14_16-10-27_plwlud.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778767906/Capture_d_%C3%A9cran_du_2026-05-14_16-10-40_wynxq1.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778767906/Capture_d_%C3%A9cran_du_2026-05-14_16-10-52_jyv9p6.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778791778/Capture_d_%C3%A9cran_du_2026-05-14_22-44-21_zw5dkz.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1779028449/Capture_d_%C3%A9cran_du_2026-05-17_16-26-51_grihyb.png,https://res.cloudinary.com/dp9qlaych/image/upload/v1778791779/Capture_d_%C3%A9cran_du_2026-05-14_22-47-00_ydch2u.png"
+  display_order: 1
 
-- slug: "computer-vision-quality-control"
-  title: "Contrôle Qualité par Vision par Ordinateur"
+
+- slug: "ot-scomics"
+  title: "Optimal Transport for Single-Cell Omics"
   problem_statement: |
-    Automatiser l'inspection visuelle de pièces manufacturées sur une
-    ligne d'assemblage pour détecter les défauts de surface en temps réel.
-  methodology: |
-    Fine-tuning d'un modèle YOLOv8 sur un dataset personnalisé de 12 000
-    images annotées. Déployé sur matériel embarqué avec optimisation TensorRT.
+    Le corps humain contient des milliards de cellules, chacune avec un
+    profil d'expression génique unique. Pour comprendre des maladies ou
+    évaluer des traitements, les biologistes ont besoin de regrouper
+    automatiquement ces cellules par type — sans les avoir étiquetées
+    au préalable.
+
+    Les méthodes classiques mesurent la similarité entre cellules de
+    façon simpliste, ce qui peut conduire à des regroupements incorrects
+    et fausser l'interprétation biologique. Ce projet explore si une
+    mesure plus sophistiquée de la similarité améliore la qualité de
+    ce regroupement automatique.
+  Presentation: |
+    Les cellules humaines produisent des milliers de protéines en quantités
+    variables — c'est ce qu'on appelle l'expression génique. Mesurer ces
+    quantités pour chaque cellule génère un profil unique, comparable à une
+    empreinte digitale biologique.
+
+    Pour regrouper automatiquement ces cellules par type, il faut d'abord
+    définir ce que signifie "être similaire". La méthode classique utilise
+    la distance euclidienne — la ligne droite entre deux points — appliquée
+    directement sur ces profils d'expression.
+
+    Ce projet explore une alternative : l'Optimal Transport (OT), une
+    technique mathématique qui mesure l'effort minimal pour transformer
+    la distribution d'expression d'une cellule en celle d'une autre.
+    Intuitivement, c'est comme mesurer le coût de déplacer de la terre
+    d'un tas vers un autre — on tient compte de la forme globale des
+    distributions, pas seulement de leurs valeurs ponctuelles.
+
+    Les deux métriques sont comparées sur leur capacité à produire des
+    groupes de cellules biologiquement cohérents, via des algorithmes
+    de clustering hiérarchique et Leiden. La qualité des regroupements
+    est évaluée par des scores standardisés (ARI, NMI, silhouette).
+    Plusieurs méthodes de visualisation en 2D (MDS, Isomap, GW-MDS)
+    permettent enfin de rendre les résultats interprétables visuellement.
   results_impact: |
-    97.4% de taux de détection des défauts, réduisant les coûts d'inspection
-    manuelle de 60% et le taux d'échappement à moins de 0.1%.
+    Meilleure séparation des types cellulaires avec la distance OT
+    comparée à la distance euclidienne classique, confirmée par
+    plusieurs métriques de clustering indépendantes.
+    Comparaison systématique de 4 méthodes de visualisation
+    dimensionnelle appliquées aux matrices de distance OT.
   metrics:
-    map50: 0.974
-    inference_ms: 12
-    defect_escape_rate: 0.001
+    methodes_comparees: 4
+    algorithmes_clustering: 3
   tech_stack:
     - Python
     - PyTorch
-    - YOLOv8
-    - TensorRT
-    - Docker
+    - NumPy
+    - Scanpy
+    - scikit-learn
+    - otscomics
+    - Plotly
   categories:
-    - Vision par Ordinateur
-  github_url: ""
+    - Bioinformatique
+    - Machine Learning
+  github_url: "https://github.com/ComputationalSystemsBiology/OT-scOmics"
   demo_url: ""
   featured: false
-  display_order: 7
+  thumbnail_url: ""
+  display_order: 2
 
-- slug: "recommendation-system"
-  title: "Système de Recommandation E-Commerce"
+
+- slug: "fueltrack"
+  title: "FuelTrack — Suivi des Prix des Carburants"
   problem_statement: |
-    Augmenter le panier moyen d'une plateforme e-commerce en recommandant
-    des produits pertinents aux utilisateurs en temps réel.
-  methodology: |
-    Recommandeur hybride combinant du filtrage collaboratif (factorisation
-    matricielle ALS) et un ranker XGBoost basé sur le contenu.
-    Servi via une API Redis à faible latence.
+    Le prix du carburant varie chaque jour et d'une station à l'autre.
+    Pourtant, la plupart des automobilistes choisissent leur station par
+    habitude, sans savoir si une moins chère existe à proximité.
+    FuelTrack centralise les prix de 11 000+ stations françaises pour
+    aider à faire le bon choix au bon moment.
+  Presentation: |
+    Les données de prix sont issues de l'API officielle du gouvernement
+    français (France Travail), téléchargées au format XML puis parsées
+    et stockées dans une base PostgreSQL. Cette collecte peut être
+    relancée quotidiennement pour maintenir les prix à jour.
+
+    Une API FastAPI expose les données et gère l'authentification des
+    utilisateurs via JWT. Une interface Streamlit permet d'explorer
+    ces données sans aucune connaissance technique : visualisation de
+    l'évolution des prix sur une période, comparaison entre carburants,
+    classement des stations les moins chères par localisation, et
+    carte interactive avec les stations à proximité.
+
+    Un système de rôles (utilisateur / administrateur) permet de gérer
+    les accès et de superviser les comptes depuis un tableau de bord dédié.
   results_impact: |
-    Taux de clic amélioré de 34% et panier moyen de 12%.
-    500K utilisateurs actifs quotidiens avec une latence p99 inférieure à 20ms.
+    Application complète et fonctionnelle couvrant 11 000+ stations françaises.
+    Visualisation des tendances de prix sur plusieurs mois.
+    Identification des stations les moins chères avec estimation de l'économie
+    réalisée sur un plein de 50 litres.
   metrics:
-    ctr_lift: 0.34
-    aov_lift: 0.12
-    latency_p99_ms: 18
+    stations_couvertes: "11 000+"
+    tables_base_de_donnees: 9
+    comptes_de_test: 7
   tech_stack:
     - Python
-    - Spark
-    - XGBoost
-    - Redis
     - FastAPI
+    - Streamlit
+    - PostgreSQL
+    - JWT
+    - Folium
   categories:
-    - Recommandation
-    - Classification
+    - Data Engineering
+    - Full Stack
   github_url: ""
   demo_url: ""
-  featured: false
-  display_order: 8
+  featured: true
+  thumbnail_url: ""
+  display_order: 3
 
-- slug: "data-pipeline-dbt"
-  title: "Pipeline Analytique avec dbt"
+
+- slug: "blood-donation-dashboard"
+  title: "Blood Donation Campaign Dashboard"
   problem_statement: |
-    Remplacer une base de code SQL fragile par un pipeline analytique
-    maintenable, testé et documenté pour une entreprise SaaS.
-  methodology: |
-    Refonte complète du data warehouse avec dbt sur BigQuery.
-    Tests de qualité des données, documentation de la lignée
-    et modèles incrémentaux pour l'optimisation des performances.
+    Organiser une campagne de don de sang, c'est gérer des centaines
+    de volontaires avec des profils médicaux variés, sans outil adapté
+    pour suivre leur éligibilité, leur localisation et l'évolution
+    de la campagne en temps réel. Ce tableau de bord centralise toutes
+    ces informations pour aider les responsables à prendre de meilleures
+    décisions.
+  Presentation: |
+    Le sang est une ressource vitale et non substituable. Pour qu'un don
+    soit sûr — pour le donneur comme pour le receveur — chaque candidat
+    doit répondre à des critères médicaux stricts : âge, poids, taux
+    d'hémoglobine, délai depuis le dernier don, absence de certaines
+    maladies.
+
+    Ce projet automatise cette vérification en analysant les données
+    collectées auprès des volontaires. Chaque profil est classé en trois
+    catégories : éligible, temporairement non éligible (ex. don récent,
+    grossesse, infection), ou définitivement non éligible (ex. VIH,
+    drépanocytose, diabète).
+
+    Les résultats sont visualisés dans un tableau de bord interactif
+    construit avec Streamlit, offrant des KPIs en temps réel, des
+    graphiques d'évolution temporelle, une carte interactive des
+    donneurs par quartier et arrondissement au Cameroun, ainsi qu'un
+    formulaire d'enregistrement de nouveaux volontaires avec vérification
+    automatique de leur éligibilité. L'interface est disponible en
+    plusieurs langues et propose plusieurs thèmes visuels.
   results_impact: |
-    Temps d'exécution du pipeline réduit de 65%. Zéro incident qualité
-    en 6 mois après migration. Onboarding des analystes réduit de 2 semaines à 3 jours.
+    Outil complet de pilotage de campagne couvrant l'ensemble du cycle :
+    collecte, vérification médicale, visualisation et cartographie.
+    Réduction du temps de vérification manuelle de l'éligibilité grâce
+    à l'automatisation des critères médicaux.
   metrics:
-    pipeline_runtime_reduction: 0.65
-    data_quality_incidents: 0
+    sections_dashboard: 7
+    criteres_eligibilite: 10
+    visualisations: "KPI, cartes, heatmaps, radar, wordcloud"
   tech_stack:
-    - SQL
-    - dbt
-    - BigQuery
     - Python
-    - Airflow
+    - Streamlit
+    - Pandas
+    - Plotly
+    - Folium
+    - GeoPandas
+    - PostgreSQL
   categories:
-    - Ingénierie des Données
+    - Data Visualisation
+    - Santé Publique
   github_url: ""
   demo_url: ""
-  featured: false
-  display_order: 9
-
-- slug: "clinical-trial-analysis"
-  title: "Analyse Statistique d'Essai Clinique"
-  problem_statement: |
-    Analyser les données d'un essai contrôlé randomisé pour évaluer
-    l'efficacité d'un nouveau médicament sur le temps de rétablissement.
-  methodology: |
-    Analyse de survie (Kaplan-Meier, régression de Cox) et modèles
-    à effets mixtes. Ajustement des facteurs confondants via score
-    de propension. Reproductibilité complète via R Markdown.
-  results_impact: |
-    Réduction statistiquement significative du temps de rétablissement
-    de 3.2 jours (p < 0.001). Résultats publiés dans une revue à comité de lecture.
-  metrics:
-    p_value: 0.001
-    recovery_reduction_days: 3.2
-    effect_size: 0.42
-  tech_stack:
-    - R
-    - survival
-    - ggplot2
-    - R Markdown
-  categories:
-    - Statistiques
-    - Recherche
-  github_url: ""
-  demo_url: ""
-  featured: false
-  display_order: 10
+  featured: true
+  thumbnail_url: ""
+  display_order: 4

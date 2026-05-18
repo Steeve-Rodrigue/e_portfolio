@@ -35,14 +35,6 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               className="flex-1 h-px"
               style={{ background: 'linear-gradient(to right, rgba(255,106,0,0.4), transparent)' }}
             />
-            {project.featured && (
-              <span
-                className="font-grotesk text-xs md:text-sm font-bold"
-                style={{ color: '#030303' }}
-              >
-                ★ Featured
-              </span>
-            )}
           </div>
 
           <h2
