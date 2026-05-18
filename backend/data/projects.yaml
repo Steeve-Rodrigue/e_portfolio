@@ -15,6 +15,8 @@
         Agrégation automatique des offres via l'API France Travail au démarrage.
         Interface de recherche et de filtrage multi-critères (métier, localisation,
         contrat) couplée à un système de profil utilisateur avec gestion des compétences.
+    - type: image
+      url: "https://res.cloudinary.com/dp9qlaych/image/upload/v1778767907/Capture_d_%C3%A9cran_du_2026-05-14_16-10-27_plwlud.png"
   results_impact: |
     Application déployée sur SSPCloud.
     Agrégation de plusieurs centaines d'offres data/IA en temps réel.

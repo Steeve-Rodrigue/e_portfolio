@@ -1,9 +1,20 @@
+import json
+
 import asyncpg
 
 from app.models.project import (
     ProjectCreate,
     ProjectUpdate,
 )
+
+JSONB_FIELDS = {"context", "problematic", "methodology", "metrics"}
+
+
+def _parse(row: dict) -> dict:
+    for field in JSONB_FIELDS:
+        if field in row and isinstance(row[field], str):
+            row[field] = json.loads(row[field])
+    return row
 
 
 async def get_all(pool: asyncpg.Pool, page: int, size: int) -> tuple[list[dict], int]:
@@ -19,7 +30,7 @@ async def get_all(pool: asyncpg.Pool, page: int, size: int) -> tuple[list[dict],
             offset,
         )
         total = await conn.fetchval("SELECT COUNT(*) FROM projects")
-    return [dict(r) for r in rows], total
+    return [_parse(dict(r)) for r in rows], total
 
 
 async def get_by_slug(pool: asyncpg.Pool, slug: str) -> dict | None:
@@ -28,12 +39,10 @@ async def get_by_slug(pool: asyncpg.Pool, slug: str) -> dict | None:
             "SELECT * FROM projects WHERE slug = $1",
             slug,
         )
-    return dict(row) if row else None
+    return _parse(dict(row)) if row else None
 
 
 async def create(pool: asyncpg.Pool, data: ProjectCreate) -> dict:
-    import json
-
     d = data.model_dump()
     async with pool.acquire() as conn:
         row = await conn.fetchrow(
@@ -69,7 +78,7 @@ async def create(pool: asyncpg.Pool, data: ProjectCreate) -> dict:
             d["featured"],
             d["display_order"],
         )
-    return dict(row)
+    return _parse(dict(row))
 
 
 async def update(
@@ -77,21 +86,18 @@ async def update(
     slug: str,
     data: ProjectUpdate,
 ) -> dict | None:
-    import json
-
     fields = data.model_dump(exclude_unset=True)
     if not fields:
         return await get_by_slug(pool, slug)
 
-    jsonb_fields = {"context", "problematic", "methodology", "metrics"}
-    for key in jsonb_fields:
+    for key in JSONB_FIELDS:
         if key in fields:
             fields[key] = json.dumps(fields[key]) if fields[key] is not None else None
 
     keys = list(fields.keys())
     values = list(fields.values())
     set_clause = ", ".join(
-        f"{key} = ${i + 1}::jsonb" if key in jsonb_fields else f"{key} = ${i + 1}"
+        f"{key} = ${i + 1}::jsonb" if key in JSONB_FIELDS else f"{key} = ${i + 1}"
         for i, key in enumerate(keys)
     )
     values.append(slug)
@@ -101,7 +107,7 @@ async def update(
             f"UPDATE projects SET {set_clause} WHERE slug = ${len(values)} RETURNING *",
             *values,
         )
-    return dict(row) if row else None
+    return _parse(dict(row)) if row else None
 
 
 async def delete(pool: asyncpg.Pool, slug: str) -> bool:
