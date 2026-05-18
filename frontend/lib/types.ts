@@ -27,12 +27,16 @@ export interface Skill {
   display_order: number
 }
 
+export type Block = { type: 'text'; content: string } | { type: 'image'; url: string }
+
 export interface Project {
   id: string
   slug: string
   title: string
-  problem_statement: string | null
-  methodology: string | null
+  properties: string | null
+  context: Block[] | null
+  problematic: Block[] | null
+  methodology: Block[] | null
   results_impact: string | null
   metrics: Record<string, number> | null
   tech_stack: string[]

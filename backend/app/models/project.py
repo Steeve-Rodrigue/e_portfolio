@@ -3,12 +3,16 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
+Block = dict
+
 
 class ProjectCreate(BaseModel):
     slug: str
     title: str
-    problem_statement: str | None = None
-    methodology: str | None = None
+    properties: str | None = None
+    context: list[Block] | None = None
+    problematic: list[Block] | None = None
+    methodology: list[Block] | None = None
     results_impact: str | None = None
     metrics: dict | None = None
     tech_stack: list[str] = []
@@ -26,8 +30,10 @@ class ProjectCreate(BaseModel):
 class ProjectUpdate(BaseModel):
     slug: str | None = None
     title: str | None = None
-    problem_statement: str | None = None
-    methodology: str | None = None
+    properties: str | None = None
+    context: list[Block] | None = None
+    problematic: list[Block] | None = None
+    methodology: list[Block] | None = None
     results_impact: str | None = None
     metrics: dict | None = None
     tech_stack: list[str] | None = None
@@ -46,8 +52,10 @@ class ProjectResponse(BaseModel):
     id: UUID
     slug: str
     title: str
-    problem_statement: str | None
-    methodology: str | None
+    properties: str | None
+    context: list[Block] | None
+    problematic: list[Block] | None
+    methodology: list[Block] | None
     results_impact: str | None
     metrics: dict | None
     tech_stack: list[str]

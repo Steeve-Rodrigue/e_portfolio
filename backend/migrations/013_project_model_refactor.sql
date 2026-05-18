@@ -4,3 +4,5 @@ ALTER TABLE projects
     ADD COLUMN problematic jsonb,
     ALTER COLUMN methodology TYPE jsonb USING NULL,
     DROP COLUMN problem_statement;
+
+DROP TABLE ml_models;
