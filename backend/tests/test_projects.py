@@ -38,6 +38,7 @@ async def test_create_project(project):
     assert "id" in project
 
 
+
 async def test_get_project_by_slug(client, project):
     response = await client.get(f"{BASE}/{SLUG}")
     assert response.status_code == 200
