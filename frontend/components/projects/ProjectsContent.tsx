@@ -6,7 +6,7 @@ import { ProjectsHero } from '@/components/projects/ProjectsHero'
 import { ProjectCard } from '@/components/projects/ProjectCard'
 import type { Project } from '@/lib/types'
 
-const FIELDS = ['title', 'problem_statement', 'methodology', 'results_impact'] as const
+const FIELDS = ['title', 'properties', 'results_impact'] as const
 
 export function ProjectsContent({ projects }: { projects: Project[] }) {
   const { t } = useLang()
