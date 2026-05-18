@@ -60,6 +60,24 @@ export async function translateFields<T extends object>(
   return result
 }
 
+export async function translateBlocks(
+  blocks: { type: string; content?: string; url?: string }[],
+  lang: 'fr' | 'en'
+): Promise<{ type: string; content?: string; url?: string }[]> {
+  if (lang === 'fr') return blocks
+
+  const textBlocks = blocks.map((b, i) => ({ i, text: b.content ?? '' })).filter((b) => b.text)
+
+  const texts = textBlocks.map((b) => b.text)
+  const translated = await resolveTexts(texts, lang)
+
+  const result = blocks.map((b) => ({ ...b }))
+  textBlocks.forEach(({ i }, idx) => {
+    result[i].content = translated[idx]
+  })
+  return result
+}
+
 export async function translateArray<T extends object>(
   items: T[],
   fields: (keyof T & string)[],

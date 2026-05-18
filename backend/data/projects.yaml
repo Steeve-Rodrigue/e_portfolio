@@ -1,14 +1,20 @@
 - slug: "jobpilot"
   title: "JobPilot — Application de Recherche d'Emploi"
-  problem_statement: |
-    Les chercheurs d'emploi dans le domaine data/IA perdent un temps considérable
-    à parcourir manuellement des centaines d'offres dispersées. JobPilot centralise
-    les offres France Travail et permet de les explorer et filtrer par métier,
-    localisation et type de contrat — le tout depuis un profil professionnel unique.
-  Presentation: |
-    Agrégation automatique des offres via l'API France Travail au démarrage.
-    Interface de recherche et de filtrage multi-critères (métier, localisation,
-    contrat) couplée à un système de profil utilisateur avec gestion des compétences.
+  properties: "Application full stack centralisant les offres data/IA de France Travail avec recherche multi-critères et gestion de profil."
+  context: []
+  problematic:
+    - type: text
+      content: |
+        Les chercheurs d'emploi dans le domaine data/IA perdent un temps considérable
+        à parcourir manuellement des centaines d'offres dispersées. JobPilot centralise
+        les offres France Travail et permet de les explorer et filtrer par métier,
+        localisation et type de contrat — le tout depuis un profil professionnel unique.
+  methodology:
+    - type: text
+      content: |
+        Agrégation automatique des offres via l'API France Travail au démarrage.
+        Interface de recherche et de filtrage multi-critères (métier, localisation,
+        contrat) couplée à un système de profil utilisateur avec gestion des compétences.
   results_impact: |
     Application déployée sur SSPCloud.
     Agrégation de plusieurs centaines d'offres data/IA en temps réel.
@@ -36,42 +42,49 @@
 
 - slug: "ot-scomics"
   title: "Optimal Transport for Single-Cell Omics"
-  problem_statement: |
-    Le corps humain contient des milliards de cellules, chacune avec un
-    profil d'expression génique unique. Pour comprendre des maladies ou
-    évaluer des traitements, les biologistes ont besoin de regrouper
-    automatiquement ces cellules par type — sans les avoir étiquetées
-    au préalable.
+  properties: "Comparaison de l'Optimal Transport et de la distance euclidienne comme métriques de similarité cellulaire pour le clustering single-cell."
+  context:
+    - type: text
+      content: |
+        Les cellules humaines produisent des milliers de protéines en quantités
+        variables — c'est ce qu'on appelle l'expression génique. Mesurer ces
+        quantités pour chaque cellule génère un profil unique, comparable à une
+        empreinte digitale biologique.
 
-    Les méthodes classiques mesurent la similarité entre cellules de
-    façon simpliste, ce qui peut conduire à des regroupements incorrects
-    et fausser l'interprétation biologique. Ce projet explore si une
-    mesure plus sophistiquée de la similarité améliore la qualité de
-    ce regroupement automatique.
-  Presentation: |
-    Les cellules humaines produisent des milliers de protéines en quantités
-    variables — c'est ce qu'on appelle l'expression génique. Mesurer ces
-    quantités pour chaque cellule génère un profil unique, comparable à une
-    empreinte digitale biologique.
+        Pour regrouper automatiquement ces cellules par type, il faut d'abord
+        définir ce que signifie "être similaire". La méthode classique utilise
+        la distance euclidienne — la ligne droite entre deux points — appliquée
+        directement sur ces profils d'expression.
+  problematic:
+    - type: text
+      content: |
+        Le corps humain contient des milliards de cellules, chacune avec un
+        profil d'expression génique unique. Pour comprendre des maladies ou
+        évaluer des traitements, les biologistes ont besoin de regrouper
+        automatiquement ces cellules par type — sans les avoir étiquetées
+        au préalable.
 
-    Pour regrouper automatiquement ces cellules par type, il faut d'abord
-    définir ce que signifie "être similaire". La méthode classique utilise
-    la distance euclidienne — la ligne droite entre deux points — appliquée
-    directement sur ces profils d'expression.
+        Les méthodes classiques mesurent la similarité entre cellules de
+        façon simpliste, ce qui peut conduire à des regroupements incorrects
+        et fausser l'interprétation biologique. Ce projet explore si une
+        mesure plus sophistiquée de la similarité améliore la qualité de
+        ce regroupement automatique.
+  methodology:
+    - type: text
+      content: |
+        Ce projet explore une alternative : l'Optimal Transport (OT), une
+        technique mathématique qui mesure l'effort minimal pour transformer
+        la distribution d'expression d'une cellule en celle d'une autre.
+        Intuitivement, c'est comme mesurer le coût de déplacer de la terre
+        d'un tas vers un autre — on tient compte de la forme globale des
+        distributions, pas seulement de leurs valeurs ponctuelles.
 
-    Ce projet explore une alternative : l'Optimal Transport (OT), une
-    technique mathématique qui mesure l'effort minimal pour transformer
-    la distribution d'expression d'une cellule en celle d'une autre.
-    Intuitivement, c'est comme mesurer le coût de déplacer de la terre
-    d'un tas vers un autre — on tient compte de la forme globale des
-    distributions, pas seulement de leurs valeurs ponctuelles.
-
-    Les deux métriques sont comparées sur leur capacité à produire des
-    groupes de cellules biologiquement cohérents, via des algorithmes
-    de clustering hiérarchique et Leiden. La qualité des regroupements
-    est évaluée par des scores standardisés (ARI, NMI, silhouette).
-    Plusieurs méthodes de visualisation en 2D (MDS, Isomap, GW-MDS)
-    permettent enfin de rendre les résultats interprétables visuellement.
+        Les deux métriques sont comparées sur leur capacité à produire des
+        groupes de cellules biologiquement cohérents, via des algorithmes
+        de clustering hiérarchique et Leiden. La qualité des regroupements
+        est évaluée par des scores standardisés (ARI, NMI, silhouette).
+        Plusieurs méthodes de visualisation en 2D (MDS, Isomap, GW-MDS)
+        permettent enfin de rendre les résultats interprétables visuellement.
   results_impact: |
     Meilleure séparation des types cellulaires avec la distance OT
     comparée à la distance euclidienne classique, confirmée par
@@ -101,27 +114,36 @@
 
 - slug: "fueltrack"
   title: "FuelTrack — Suivi des Prix des Carburants"
-  problem_statement: |
-    Le prix du carburant varie chaque jour et d'une station à l'autre.
-    Pourtant, la plupart des automobilistes choisissent leur station par
-    habitude, sans savoir si une moins chère existe à proximité.
-    FuelTrack centralise les prix de 11 000+ stations françaises pour
-    aider à faire le bon choix au bon moment.
-  Presentation: |
-    Les données de prix sont issues de l'API officielle du gouvernement
-    français (France Travail), téléchargées au format XML puis parsées
-    et stockées dans une base PostgreSQL. Cette collecte peut être
-    relancée quotidiennement pour maintenir les prix à jour.
+  properties: "Application de suivi des prix carburants couvrant 11 000+ stations françaises avec carte interactive et comparaison des prix."
+  context:
+    - type: text
+      content: |
+        Le prix du carburant varie chaque jour et d'une station à l'autre.
+        Pourtant, la plupart des automobilistes choisissent leur station par
+        habitude, sans savoir si une moins chère existe à proximité.
+  problematic:
+    - type: text
+      content: |
+        FuelTrack centralise les prix de 11 000+ stations françaises pour
+        aider à faire le bon choix au bon moment — avec une visualisation
+        de l'évolution des prix et un classement des stations les moins chères.
+  methodology:
+    - type: text
+      content: |
+        Les données de prix sont issues de l'API officielle du gouvernement
+        français, téléchargées au format XML puis parsées et stockées dans
+        une base PostgreSQL. Cette collecte peut être relancée quotidiennement
+        pour maintenir les prix à jour.
 
-    Une API FastAPI expose les données et gère l'authentification des
-    utilisateurs via JWT. Une interface Streamlit permet d'explorer
-    ces données sans aucune connaissance technique : visualisation de
-    l'évolution des prix sur une période, comparaison entre carburants,
-    classement des stations les moins chères par localisation, et
-    carte interactive avec les stations à proximité.
+        Une API FastAPI expose les données et gère l'authentification des
+        utilisateurs via JWT. Une interface Streamlit permet d'explorer
+        ces données sans aucune connaissance technique : visualisation de
+        l'évolution des prix sur une période, comparaison entre carburants,
+        classement des stations les moins chères par localisation, et
+        carte interactive avec les stations à proximité.
 
-    Un système de rôles (utilisateur / administrateur) permet de gérer
-    les accès et de superviser les comptes depuis un tableau de bord dédié.
+        Un système de rôles (utilisateur / administrateur) permet de gérer
+        les accès et de superviser les comptes depuis un tableau de bord dédié.
   results_impact: |
     Application complète et fonctionnelle couvrant 11 000+ stations françaises.
     Visualisation des tendances de prix sur plusieurs mois.
@@ -150,33 +172,40 @@
 
 - slug: "blood-donation-dashboard"
   title: "Blood Donation Campaign Dashboard"
-  problem_statement: |
-    Organiser une campagne de don de sang, c'est gérer des centaines
-    de volontaires avec des profils médicaux variés, sans outil adapté
-    pour suivre leur éligibilité, leur localisation et l'évolution
-    de la campagne en temps réel. Ce tableau de bord centralise toutes
-    ces informations pour aider les responsables à prendre de meilleures
-    décisions.
-  Presentation: |
-    Le sang est une ressource vitale et non substituable. Pour qu'un don
-    soit sûr — pour le donneur comme pour le receveur — chaque candidat
-    doit répondre à des critères médicaux stricts : âge, poids, taux
-    d'hémoglobine, délai depuis le dernier don, absence de certaines
-    maladies.
+  properties: "Tableau de bord de pilotage de campagne de don de sang avec vérification automatique de l'éligibilité et cartographie des donneurs."
+  context:
+    - type: text
+      content: |
+        Le sang est une ressource vitale et non substituable. Pour qu'un don
+        soit sûr — pour le donneur comme pour le receveur — chaque candidat
+        doit répondre à des critères médicaux stricts : âge, poids, taux
+        d'hémoglobine, délai depuis le dernier don, absence de certaines
+        maladies.
+  problematic:
+    - type: text
+      content: |
+        Organiser une campagne de don de sang, c'est gérer des centaines
+        de volontaires avec des profils médicaux variés, sans outil adapté
+        pour suivre leur éligibilité, leur localisation et l'évolution
+        de la campagne en temps réel. Ce tableau de bord centralise toutes
+        ces informations pour aider les responsables à prendre de meilleures
+        décisions.
+  methodology:
+    - type: text
+      content: |
+        Ce projet automatise la vérification médicale en analysant les données
+        collectées auprès des volontaires. Chaque profil est classé en trois
+        catégories : éligible, temporairement non éligible (ex. don récent,
+        grossesse, infection), ou définitivement non éligible (ex. VIH,
+        drépanocytose, diabète).
 
-    Ce projet automatise cette vérification en analysant les données
-    collectées auprès des volontaires. Chaque profil est classé en trois
-    catégories : éligible, temporairement non éligible (ex. don récent,
-    grossesse, infection), ou définitivement non éligible (ex. VIH,
-    drépanocytose, diabète).
-
-    Les résultats sont visualisés dans un tableau de bord interactif
-    construit avec Streamlit, offrant des KPIs en temps réel, des
-    graphiques d'évolution temporelle, une carte interactive des
-    donneurs par quartier et arrondissement au Cameroun, ainsi qu'un
-    formulaire d'enregistrement de nouveaux volontaires avec vérification
-    automatique de leur éligibilité. L'interface est disponible en
-    plusieurs langues et propose plusieurs thèmes visuels.
+        Les résultats sont visualisés dans un tableau de bord interactif
+        construit avec Streamlit, offrant des KPIs en temps réel, des
+        graphiques d'évolution temporelle, une carte interactive des
+        donneurs par quartier et arrondissement au Cameroun, ainsi qu'un
+        formulaire d'enregistrement de nouveaux volontaires avec vérification
+        automatique de leur éligibilité. L'interface est disponible en
+        plusieurs langues et propose plusieurs thèmes visuels.
   results_impact: |
     Outil complet de pilotage de campagne couvrant l'ensemble du cycle :
     collecte, vérification médicale, visualisation et cartographie.

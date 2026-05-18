@@ -50,12 +50,12 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         className="bg-white/75 border border-[rgba(255,106,0,0.12)] rounded-[14px] px-4 py-5 md:ml-12 md:px-8 md:py-7 backdrop-blur-sm"
         style={{ boxShadow: '0 2px 20px rgba(0,0,0,0.04), 0 0 0 1px rgba(255,255,255,0.8) inset' }}
       >
-        {project.problem_statement && (
+        {project.properties && (
           <p
-            className=" font-grotesk text-sm md:text-base xl:text-lg leading-relaxed mb-4"
+            className="font-grotesk text-sm md:text-base xl:text-lg leading-relaxed mb-4"
             style={{ color: '#444444' }}
           >
-            {project.problem_statement}
+            {project.properties}
           </p>
         )}
 

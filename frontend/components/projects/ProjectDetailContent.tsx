@@ -5,10 +5,10 @@ import Link from 'next/link'
 import { ArrowLeft, ExternalLink, BookOpen } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { useLang } from '@/lib/language-context'
-import { useTranslateFields } from '@/lib/use-translate'
-import type { Project } from '@/lib/types'
+import { useTranslateFields, useTranslateBlocks } from '@/lib/use-translate'
+import type { Block, Project } from '@/lib/types'
 
-const FIELDS = ['title', 'problem_statement', 'methodology', 'results_impact'] as const
+const FIELDS = ['title', 'properties', 'results_impact'] as const
 
 function SectionDivider({ label }: { label: string }) {
   return (
@@ -24,9 +24,42 @@ function SectionDivider({ label }: { label: string }) {
   )
 }
 
+function BlockRenderer({ blocks }: { blocks: Block[] }) {
+  return (
+    <div className="flex flex-col gap-6">
+      {blocks.map((block, i) => {
+        if (block.type === 'image') {
+          return (
+            <Image
+              key={i}
+              src={block.url}
+              alt=""
+              width={0}
+              height={0}
+              sizes="(max-width: 850px) 100vw, 800px"
+              className="rounded-[16px] w-full h-auto"
+            />
+          )
+        }
+        return (
+          <p
+            key={i}
+            className="text-sm md:text-base xl:text-lg leading-relaxed text-black whitespace-pre-wrap"
+          >
+            {block.content}
+          </p>
+        )
+      })}
+    </div>
+  )
+}
+
 export function ProjectDetailContent({ project }: { project: Project }) {
   const { t } = useLang()
   const p = useTranslateFields(project, [...FIELDS])
+  const context = useTranslateBlocks(project.context)
+  const problematic = useTranslateBlocks(project.problematic)
+  const methodology = useTranslateBlocks(project.methodology)
 
   return (
     <main
@@ -63,9 +96,15 @@ export function ProjectDetailContent({ project }: { project: Project }) {
           )}
         </div>
 
-        <h1 className="font-grotesk font-extrabold text-3xl md:text-5xl xl:text-6xl mb-6 leading-none tracking-tight text-[#070707]">
+        <h1 className="font-grotesk font-extrabold text-3xl md:text-5xl xl:text-6xl mb-4 leading-none tracking-tight text-[#070707]">
           {p.title}
         </h1>
+
+        {p.properties && (
+          <p className="font-grotesk text-sm md:text-base xl:text-lg text-[#666] mb-6 leading-relaxed max-w-2xl">
+            {p.properties}
+          </p>
+        )}
 
         <div className="flex items-center gap-3 flex-wrap">
           {project.github_url && (
@@ -105,21 +144,24 @@ export function ProjectDetailContent({ project }: { project: Project }) {
       </div>
 
       <div className="max-w-3xl">
-        {p.problem_statement && (
+        {context && context.length > 0 && (
           <section className="mb-12">
-            <SectionDivider label={t('slug.problem')} />
-            <p className="text-[14px] md:text-base xl:text-lg leading-relaxed text-black whitespace-pre-wrap">
-              {p.problem_statement}
-            </p>
+            <SectionDivider label={t('slug.context')} />
+            <BlockRenderer blocks={context} />
           </section>
         )}
 
-        {p.methodology && (
+        {problematic && problematic.length > 0 && (
           <section className="mb-12">
-            <SectionDivider label={t('slug.presentation')} />
-            <p className="text-sm md:text-base xl:text-lg leading-relaxed text-black whitespace-pre-wrap">
-              {p.methodology}
-            </p>
+            <SectionDivider label={t('slug.problematic')} />
+            <BlockRenderer blocks={problematic} />
+          </section>
+        )}
+
+        {methodology && methodology.length > 0 && (
+          <section className="mb-12">
+            <SectionDivider label={t('slug.methodology')} />
+            <BlockRenderer blocks={methodology} />
           </section>
         )}
 
