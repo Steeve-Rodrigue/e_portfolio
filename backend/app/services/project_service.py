@@ -32,28 +32,32 @@ async def get_by_slug(pool: asyncpg.Pool, slug: str) -> dict | None:
 
 
 async def create(pool: asyncpg.Pool, data: ProjectCreate) -> dict:
+    import json
+
     d = data.model_dump()
     async with pool.acquire() as conn:
         row = await conn.fetchrow(
             """
             INSERT INTO projects (
-                slug, title, problem_statement, methodology, results_impact,
-                metrics, tech_stack, categories, github_url, demo_url,
-                notebook_url, thumbnail_url, has_ml_demo, ml_endpoint,
-                featured, display_order
+                slug, title, properties, context, problematic, methodology,
+                results_impact, metrics, tech_stack, categories,
+                github_url, demo_url, notebook_url, thumbnail_url,
+                has_ml_demo, ml_endpoint, featured, display_order
             ) VALUES (
-                $1, $2, $3, $4, $5,
-                $6, $7, $8, $9, $10,
+                $1, $2, $3, $4::jsonb, $5::jsonb, $6::jsonb,
+                $7, $8::jsonb, $9, $10,
                 $11, $12, $13, $14,
-                $15, $16
+                $15, $16, $17, $18
             ) RETURNING *
             """,
             d["slug"],
             d["title"],
-            d["problem_statement"],
-            d["methodology"],
+            d["properties"],
+            json.dumps(d["context"]),
+            json.dumps(d["problematic"]),
+            json.dumps(d["methodology"]),
             d["results_impact"],
-            d["metrics"],
+            json.dumps(d["metrics"]) if d["metrics"] is not None else None,
             d["tech_stack"],
             d["categories"],
             d["github_url"],
@@ -73,13 +77,23 @@ async def update(
     slug: str,
     data: ProjectUpdate,
 ) -> dict | None:
+    import json
+
     fields = data.model_dump(exclude_unset=True)
     if not fields:
         return await get_by_slug(pool, slug)
 
+    jsonb_fields = {"context", "problematic", "methodology", "metrics"}
+    for key in jsonb_fields:
+        if key in fields:
+            fields[key] = json.dumps(fields[key]) if fields[key] is not None else None
+
     keys = list(fields.keys())
     values = list(fields.values())
-    set_clause = ", ".join(f"{key} = ${i + 1}" for i, key in enumerate(keys))
+    set_clause = ", ".join(
+        f"{key} = ${i + 1}::jsonb" if key in jsonb_fields else f"{key} = ${i + 1}"
+        for i, key in enumerate(keys)
+    )
     values.append(slug)
 
     async with pool.acquire() as conn:
