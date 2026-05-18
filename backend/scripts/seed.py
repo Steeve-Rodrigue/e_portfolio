@@ -53,23 +53,13 @@ def seed_profile(client: httpx.Client, base_url: str, token: str) -> None:
 
 def seed_projects(client: httpx.Client, base_url: str, token: str) -> None:
     projects = yaml.safe_load((DATA_DIR / "projects.yaml").read_text())
+    auth = {"Authorization": f"Bearer {token}"}
+    existing = client.get(f"{base_url}/api/v1/projects").json().get("items", [])
+    for item in existing:
+        client.delete(f"{base_url}/api/v1/projects/{item['slug']}", headers=auth).raise_for_status()
     for project in projects:
-        slug = project["slug"]
-        exists = client.get(f"{base_url}/api/v1/projects/{slug}").status_code == 200
-        if exists:
-            client.patch(
-                f"{base_url}/api/v1/projects/{slug}",
-                json=project,
-                headers={"Authorization": f"Bearer {token}"},
-            ).raise_for_status()
-            print(f"✓ Project updated:  {slug}")
-        else:
-            client.post(
-                f"{base_url}/api/v1/projects",
-                json=project,
-                headers={"Authorization": f"Bearer {token}"},
-            ).raise_for_status()
-            print(f"✓ Project created:  {slug}")
+        client.post(f"{base_url}/api/v1/projects", json=project, headers=auth).raise_for_status()
+        print(f"✓ Project created:  {project['slug']}")
 
 
 def _replace_all(
