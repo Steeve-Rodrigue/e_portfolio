@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { FolderOpen, Download, MapPin } from 'lucide-react'
 import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa'
-import { HeroCadran } from '@/components/sections/HeroCadran'
+//import { HeroCadran } from '@/components/sections/HeroCadran'
 import { splitName } from '@/lib/utils'
 import { useLang } from '@/lib/language-context'
 import { useTranslateFields } from '@/lib/use-translate'
@@ -51,6 +51,12 @@ export function HeroClient({ profile }: { profile: Profile }) {
             {p.availability_status}
           </div>
         )}
+        <span
+          className="font-grotesk text-[10px] md:text-base xl:text-[14px]"
+          style={{ color: '#444444' }}
+        >
+          {t('hero.greeting')}
+        </span>
 
         <h1
           className="text-3xl md:text-4xl xl:text-5xl tracking-tight leading-tight"
@@ -149,9 +155,9 @@ export function HeroClient({ profile }: { profile: Profile }) {
         </div>
       </div>
 
-      <div className="[@media(max-width:600px)]:hidden flex items-center justify-center">
+      {/* <div className="[@media(max-width:600px)]:hidden flex items-center justify-center">
         <HeroCadran photoUrl={profile.calendly_url} />
-      </div>
+      </div> */}
     </div>
   )
 }

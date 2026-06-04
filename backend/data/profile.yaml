@@ -1,13 +1,13 @@
 name: "STEEVE"
-title: "Data Scientist-ML Engineer"
+title: "Data Scientist-ML Engineer student"
 tagline: "Spécialisé en ingénierie de la donnée et machine learning, je construis des systèmes scalables qui transforment des données complexes en valeur concrète, de l'architecture au modèle, du pipeline à l'insight."
 availability_status: "Disponible"
 is_open_to_work: true
 location: "Rennes, France"
 email: "steeve-rodrigue.takougoum@eleve.ensai.fr"
 github_url: "https://github.com/Steeve-Rodrigue/"
-linkedin_url: "https://linkedin.com/in/steeve-takougoum-744989280/"
-calendly_url: "https://res.cloudinary.com/dp9qlaych/image/upload/v1778627862/Capture_d_%C3%A9cran_du_2026-05-10_23-49-33_iec0or.png"
+linkedin_url: "https://www.linkedin.com/in/steeve-rodrigue-takougoum-744989280/"
+calendly_url: "https://res.cloudinary.com/dp9qlaych/image/upload/v1779143609/photo_dpmews.png"
 social_links:
   kaggle: ""
   huggingface: ""
@@ -16,3 +16,5 @@ ethics_statement: ""
 communication_style: ""
 work_preference: ""
 fun_fact: ""
+
+# https://res.cloudinary.com/dp9qlaych/image/upload/v1779143609/photo_dpmews.png
