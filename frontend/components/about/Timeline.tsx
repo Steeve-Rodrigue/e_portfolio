@@ -33,8 +33,6 @@ function TimelineEntry({ exp, index }: { exp: Experience; index: number }) {
     return () => observer.disconnect()
   }, [])
 
-  const isJob = exp.type === 'job'
-
   return (
     <div
       ref={ref}
@@ -42,13 +40,9 @@ function TimelineEntry({ exp, index }: { exp: Experience; index: number }) {
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       {/* Dot */}
-      <div
-        className={`absolute left-0 top-2 -translate-x-[calc(50%-0.5px)] w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-          isJob ? 'bg-[#ff6a00] border-[#ff6a00]' : 'bg-white border-[#7a7582]'
-        }`}
-      >
-        {isJob ? (
-          <Briefcase className="w-2 h-2 text-white" />
+      <div className="absolute left-0 top-2 -translate-x-[calc(50%-0.5px)] w-4 h-4 rounded-full border-2 bg-white border-[#7a7582] flex items-center justify-center">
+        {exp.type === 'job' ? (
+          <Briefcase className="w-2 h-2 text-[#7a7582]" />
         ) : (
           <GraduationCap className="w-2.5 h-2.5 text-[#7a7582]" />
         )}
